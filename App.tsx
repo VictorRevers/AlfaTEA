@@ -5,7 +5,7 @@ export default function App() {
   return (
     <GluestackUIProvider config={config}>
       <Box>
-        <Text>AAAAAAALOOOOo</Text>
+        <Text>Helloooo</Text>
       </Box>
     </GluestackUIProvider>
   );
