@@ -1,14 +1,21 @@
-import * as fs from 'fs';
+import ImagesBase from "../assets/Images/ImagesBase";
 
-let imagesList: Array<string> = [];
+//import fs from 'fs';
+
+//let imagesList: Array<string> = [];
+let imagesList: any[];
 
 export default class ImagesController{
   
     static GetImages(type:string){
-        imagesList = fs.readdirSync(`../assets/Images/${type}`);
+        if(type == "Teste"){
+            imagesList = ImagesBase.Base.Teste;
+        }
+        
+        return imagesList;
     }
 
     static SelectImage(){
-        imagesList
+        
     }
 }
