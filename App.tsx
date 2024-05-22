@@ -1,5 +1,5 @@
 import { config } from '@gluestack-ui/config';
-import { Box, GluestackUIProvider, Text } from '@gluestack-ui/themed';
+import {Box, GluestackUIProvider, Text } from '@gluestack-ui/themed';
 import ImagesController from './src/controllers/ImagesController';
 import ImagesBase from './src/assets/Images/ImagesBase';
 import {Image, StyleSheet} from "react-native";
@@ -9,8 +9,6 @@ let imagesPath = ImagesController.GetImages("Teste");
 
 const GetImages = (type: string) =>{
     imagesPath = ImagesController.GetImages(type);
-    console.log(imagesPath);
-    console.log(require('./src/assets/Images/Teste/jogo.PNG'));
 }
 
 
