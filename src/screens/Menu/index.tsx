@@ -1,12 +1,13 @@
+import { View } from "react-native";
 import { ButtonMenu } from "../../components/ButtonPlay";
+import { NavigationProp } from "@react-navigation/native";
 
-export default function Menu(){
+
+export function Menu({navigation} : {navigation: NavigationProp<any>}){
     return(
-        <>
-            <ButtonMenu type="play" onPress={() => {}} />
-            <ButtonMenu type="credit" onPress={() => {}} />
-            <ButtonMenu type="aprenda" onPress={() => {}} />
-            <ButtonMenu type="sobre" onPress={() => {}} />
-        </>
+        <View>
+            <ButtonMenu type="play" onPress={() => {navigation.navigate("Home")}} />
+            
+        </View>
     )
 }
