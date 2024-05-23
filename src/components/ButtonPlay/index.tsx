@@ -41,6 +41,12 @@ export function ButtonMenu(props: buttonProps){
         </Pressable>
       </View>
     )
+  } else if(props.type == "voltar"){
+      <View style={styles.btnContainer}>
+          <Pressable style={styles.btnVoltar} p="$3" bg="red" onPress={props.onPress}>
+            <Text color="white">Voltar</Text>
+          </Pressable>
+      </View>
   }
 }
 
@@ -53,6 +59,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   btn: {
+    width: 110,
+    height: 110,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  btnVoltar: {
     width: 110,
     height: 110,
     display: "flex",
