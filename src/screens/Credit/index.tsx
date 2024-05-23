@@ -1,4 +1,3 @@
-import { View } from "@gluestack-ui/config/build/theme";
 import { ButtonMenu } from "../../components/ButtonPlay";
 import { NavigationProp } from "@react-navigation/native";
 
