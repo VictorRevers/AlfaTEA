@@ -11,8 +11,9 @@ export default class ImagesController{
     static GetImages(type:string){
 
         //let imagesList = fs.readdir(`../assets/Images/${type}`);
-        if(type == "Teste"){
-            imagesList = ImagesBase.Base.Teste;
+        if(type == "Animais"){
+            imagesList = ImagesBase.Base.Animais;
+            console.log(imagesList[1]);
         }
         
         return imagesList;

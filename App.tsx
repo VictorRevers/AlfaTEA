@@ -5,7 +5,7 @@ import ImagesBase from './src/assets/Images/ImagesBase';
 import {Image, StyleSheet} from "react-native";
 import { useEffect, useState } from 'react';
 
-let imagesPath = ImagesController.GetImages("Teste");
+let imagesPath = ImagesController.GetImages("Animais");
 
 const GetImages = (type: string) =>{
     imagesPath = ImagesController.GetImages(type);
@@ -33,7 +33,7 @@ export default function App() {
     <GluestackUIProvider config={config}>
       <Box>
         <Text>Helloooo</Text>
-        <Image style={styles.tinyLogo}  source={/*require('./src/assets/Images/Teste/jogo.PNG')*/imagesPath[1]}/>
+        <Image style={styles.tinyLogo}  source={/*require('./src/assets/Images/Teste/jogo.PNG')*/imagesPath[0]}/>
       </Box>
     </GluestackUIProvider>
   );
