@@ -14,7 +14,7 @@ export const Home = ({navigation}: {navigation: NavigationProp<any>}) => {
                 <ButtonMenu type="play" onPress={() => {}} />
             </View>
             <View style={styles.btnSobre}>
-                <ButtonMenu type="sobre" onPress={() => {}} />
+                <ButtonMenu type="sobre" onPress={() => {navigation.navigate("Sobre")}} />
             </View>
             <View style={styles.btnCredit}>
                 <ButtonMenu type="credit" onPress={() => {navigation.navigate("Credit")}} />
@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        margin: 50,
+        marginTop: 80,
+        gap: 80,
     },
     btnAprenda: {
         transform: [{rotate: '-10deg'}]

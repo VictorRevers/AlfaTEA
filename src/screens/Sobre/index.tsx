@@ -1,17 +1,18 @@
 import { Text, View } from "@gluestack-ui/themed";
 import { ButtonMenu } from "../../components/ButtonPlay";
+import { StyleSheet } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { Image } from "react-native-svg";
-import { StyleSheet } from "react-native";
+import { BR } from "@expo/html-elements";
 
-export function Credit({navigation}: {navigation: NavigationProp<any>}){
+export function Sobre({navigation}: {navigation: NavigationProp<any>}){
     return(
-        <View style={styles.containerCredit}>
+        <View style={styles.containerSobre}>
             <View style={styles.containerImagem}>
                 <Image />
             </View>
             <View style={styles.containerText}>
-                <Text style={styles.txtCredit}>{'AUTORES\n\nRENATA MARQUES COSTA\nE-MAIL: RENATAMARQUES.COSTA@GMAIL.COM\n\nADRIANA DA SILVA LISBOA TOMAZ\nE-MAIL: ATOMAZ@UNICARIOCA.EDU.BR\n\nMARIZA SUELI DE OLIVEIRA SODRÉ\nE-MAIL: MARIZABIO@HOTMAIL.COM\n\nPROGRAMAÇÃO\n\nFELIPE MARTINS DE MEDEIROS\nE-MAIL: FELIPEMEDEIROSINFO@GMAIL.COM\n\nVICTOR REVERS KASNOWSKI\nE-MAIL: VICTOR.KASNOWSKI@GMAIL.COM\n\nMATEUS LOPES DA SILVA\nE-MAIL:MATEUSLOPES1717@GMAIL.COM\n\nLORHAN LUCAS DA SILVA FERNANDES\nE-MAIL:LORHAN123@GMAIL.COM\n\nCOORDENADOR DO LABORATÓRIO DE TECNOLOGIA APLICADA\n\nANDRÉ COTELLI DO ESPÍRITO SANTO\nE-MAIL: ASANTO@UNICARIOCA.EDU.BR'}</Text>
+                <Text style={styles.txtSobre}>{'O JOGO ALFA TEA TRABALHA A CONSCIÊNCIA FONÉTICA\nPARA AUXILIAR NO PROCESSO\nDE ALFABETIZAÇÃO,\nATRAVÉS DA GAMIFICAÇÃO\nE DO APOIO VISUAL.\nFOI PENSADO PARA\nCRIANÇAS COM\nTRANSTORNO DO ESPECTRO AUTISTA\n(TEA)'}</Text>
             </View>
             <View style={styles.containerBtnVoltar}>
                 <View>
@@ -19,11 +20,11 @@ export function Credit({navigation}: {navigation: NavigationProp<any>}){
                 </View>
             </View>
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
-    containerCredit: {
+    containerSobre: {
         display: "flex",
         flexDirection: "row",
         margin: 0,
@@ -47,9 +48,9 @@ const styles = StyleSheet.create({
         width: 200,
         height: 384,
     },
-    txtCredit: {
-        textAlign: "left",
-        fontSize: 9.5,
+    txtSobre: {
+        fontSize: 20,
         fontWeight: "bold",
+        textAlign: "center",
     },
 });
