@@ -31,25 +31,25 @@ const styles = StyleSheet.create({
     },
     containerText: {
         width: 374,
-        height: 384,
+        height: "100%",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
     },
     containerImagem: {
         width: 200,
-        height: 384,
+        height: "100%",
     },
     containerBtnVoltar: {
         display: "flex",
         justifyContent: "flex-end",
         alignItems: "flex-end",
         width: 200,
-        height: 384,
+        height: "99%",
     },
     txtCredit: {
         textAlign: "left",
-        fontSize: 9.5,
+        fontSize: 10,
         fontWeight: "bold",
     },
 });

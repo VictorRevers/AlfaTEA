@@ -1,8 +1,13 @@
 import { View, Text, Image } from "@gluestack-ui/themed";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { NavigationProp } from "@react-navigation/native";
 
-export const FiguresOptions = () => {
+export const FiguresOptions = ({
+  navigation,
+}: {
+  navigation: NavigationProp<any>;
+}) => {
   return (
     <View
       display="flex"
@@ -108,7 +113,14 @@ export const FiguresOptions = () => {
         gap={6}
         p={4}
       >
-        <MaterialIcons name="arrow-back" size={32} color="black" />
+        <MaterialIcons
+          name="arrow-back"
+          size={32}
+          color="black"
+          onPress={() => {
+            navigation.navigate("Home");
+          }}
+        />
         <View>
           <Text>Stars </Text>
         </View>
