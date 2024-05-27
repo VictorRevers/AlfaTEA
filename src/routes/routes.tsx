@@ -3,6 +3,7 @@ import { Home } from "../screens/Home";
 import { Menu } from "../screens/Menu";
 import { Credit } from "../screens/Credit";
 import { Sobre } from "../screens/Sobre";
+import { FiguresOptions } from "../screens/FiguresOptions";
 
 const Stack = createNativeStackNavigator();
 
@@ -15,6 +16,7 @@ export const Routes = () => {
       <Stack.Screen name="Menu" component={Menu} />
       <Stack.Screen name="Credit" component={Credit} />
       <Stack.Screen name="Sobre" component={Sobre} />
+      <Stack.Screen name="FiguresOptions" component={FiguresOptions} />
     </Stack.Navigator>
   );
 };
