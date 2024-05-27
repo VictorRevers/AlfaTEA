@@ -1,4 +1,7 @@
 import ImagesBase from "../assets/Images/ImagesBase";
+//import { captureRef } from 'react-native-view-shot';
+import * as Print from 'expo-print';
+import { shareAsync } from 'expo-sharing';
 
 //import fs from 'fs';
 import * as fs from 'node:fs/promises';
@@ -21,5 +24,9 @@ export default class ImagesController{
 
     static SelectImage(){
         
+    }
+
+    static Print(){
+
     }
 }
