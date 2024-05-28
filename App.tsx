@@ -1,47 +1,19 @@
-import { config } from '@gluestack-ui/config';
-import {Box, GluestackUIProvider, Text } from '@gluestack-ui/themed';
-import ImagesController from './src/controllers/ImagesController';
-import ImagesBase from './src/assets/Images/ImagesBase';
-import {Image, StyleSheet} from "react-native";
-import { useEffect, useState } from 'react';
+import { config } from "@gluestack-ui/config";
+import { GluestackUIProvider } from "@gluestack-ui/themed";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Routes } from "./src/routes/routes";
+import { StatusBar } from "expo-status-bar";
 
-let imagesPath = ImagesController.GetImages("Animais");
-
-const GetImages = (type: string) =>{
-    imagesPath = ImagesController.GetImages(type);
-}
-
-
-
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 50,
-  },
-  tinyLogo: {
-    width: 50,
-    height: 50,
-  },
-  logo: {
-    width: 66,
-    height: 58,
-  },
-});
-
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <GluestackUIProvider config={config}>
-      <Box>
-        <Text>Helloooo</Text>
-        <Image style={styles.tinyLogo}  source={/*require('./src/assets/Images/Teste/jogo.PNG')*/imagesPath[0]}/>
-      </Box>
-    </GluestackUIProvider>
+    <NavigationContainer>
+      <StatusBar hidden />
+      <GluestackUIProvider config={config}>
+        <Routes />
+      </GluestackUIProvider>
+    </NavigationContainer>
   );
 }
-
-/*useEffect(()=>{
-  GetImages("Teste");
-}, []);*/
-
-
-
