@@ -6,6 +6,7 @@ import { captureRef } from 'react-native-view-shot';
 import { useEffect, useState, useRef } from 'react';
 import {PixelRatio} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import PrintPDF from "../../controllers/PrintPDF";
 
 
 
@@ -33,6 +34,9 @@ export const FiguresOptions = ({
   });
   console.log(result);
   setSnapShotImage(result);
+  const html = PrintPDF.setHTML(snapshotImage);
+  PrintPDF.printToFile(html);
+
 }
 
   return (
