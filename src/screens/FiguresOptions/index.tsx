@@ -4,10 +4,11 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { NavigationProp } from "@react-navigation/native";
 import { captureRef } from 'react-native-view-shot';
 import { useEffect, useState, useRef } from 'react';
-import {PixelRatio} from "react-native";
+import {PixelRatio, Pressable} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import PrintPDF from "../../controllers/PrintPDF";
 import FileSystem from "../../controllers/FileSystem";
+import ImagesController from "../../controllers/ImagesController";
 
 
 
@@ -19,12 +20,14 @@ export const FiguresOptions = ({
 }) => {
   const viewToSnapShotRef:any = useRef();
   const [snapshotImage,setSnapShotImage] = useState('');
+  const [images, setImages] = useState(Array<any>);
 
   const targetPixelCount = 1080; // If you want full HD pictures
   const pixelRatio = PixelRatio.get(); // The pixel ratio of the device
   // pixels * pixelRatio = targetPixelCount, so pixels = targetPixelCount / pixelRatio
   const pixels = targetPixelCount / pixelRatio;
 
+  //take printscreen and turn into PDF
   const snapshot = async() =>{
     const result = await captureRef(viewToSnapShotRef, {
     result: 'tmpfile',
@@ -39,8 +42,15 @@ export const FiguresOptions = ({
   //setSnapShotImage(result);
   const html = await PrintPDF.setHTML(img);
   PrintPDF.printToFile(html);
-
 }
+
+  const getImages = (type:string) =>{
+    let imgs = ImagesController.GetImages(type);
+    setImages(imgs);
+    console.log("CLICOU!!!!!!");
+
+    //implement change view...
+  }
 
   return (
     <View
@@ -62,64 +72,74 @@ export const FiguresOptions = ({
         p={3}
       >
         <View flexDirection="column" alignItems="center">
-          <Image
-            size="md"
-            alt="Image1"
-            source={{
-              uri: "http://placekitten.com/300/300",
-            }}
-          />
-          <Text fontSize={"$lg"} fontWeight={"$bold"}>
-            Cenários
-          </Text>
+          <Pressable onPress={()=>{getImages("Cenarios")}}>
+            <Image
+              size="md"
+              alt="Image1"
+              source={{
+                uri: "http://placekitten.com/300/300",
+              }}           
+            />
+            <Text fontSize={"$lg"} fontWeight={"$bold"}>
+              Cenários
+            </Text>
+          </Pressable>
         </View>
         <View flexDirection="column" alignItems="center">
-          <Image
-            size="md"
-            alt="Image1"
-            source={{
-              uri: "http://placekitten.com/300/300",
-            }}
-          />
-          <Text fontSize={"$lg"} fontWeight={"$bold"}>
-            Personagens
-          </Text>
+          <Pressable onPress={()=>{getImages("Personagens")}}>
+            <Image
+              size="md"
+              alt="Image1"
+              source={{
+                uri: "http://placekitten.com/300/300",
+              }}
+            />
+            <Text fontSize={"$lg"} fontWeight={"$bold"}>
+              Personagens
+            </Text>
+          </Pressable>
         </View>
         <View flexDirection="column" alignItems="center">
-          <Image
-            size="md"
-            alt="Image1"
-            source={{
-              uri: "http://placekitten.com/300/300",
-            }}
-          />
-          <Text fontSize={"$lg"} fontWeight={"$bold"}>
-            Animais
-          </Text>
+          <Pressable onPress={()=>{getImages("Animais")}}>
+            <Image
+              size="md"
+              alt="Image1"
+              source={{
+                uri: "http://placekitten.com/300/300",
+              }}
+            />
+            <Text fontSize={"$lg"} fontWeight={"$bold"}>
+              Animais
+            </Text>
+          </Pressable>
         </View>
         <View flexDirection="column" alignItems="center">
-          <Image
-            size="md"
-            alt="Image1"
-            source={{
-              uri: "http://placekitten.com/300/300",
-            }}
-          />
-          <Text fontSize={"$lg"} fontWeight={"$bold"}>
-            Objetos
-          </Text>
+          <Pressable onPress={()=>{getImages("Objetos")}}>
+            <Image
+              size="md"
+              alt="Image1"
+              source={{
+                uri: "http://placekitten.com/300/300",
+              }}
+            />
+            <Text fontSize={"$lg"} fontWeight={"$bold"}>
+              Objetos
+            </Text>
+          </Pressable>
         </View>
         <View flexDirection="column" alignItems="center">
-          <Image
-            size="md"
-            alt="Image1"
-            source={{
-              uri: "http://placekitten.com/300/300",
-            }}
-          />
-          <Text fontSize={"$lg"} fontWeight={"$bold"}>
-            Brinquedos
-          </Text>
+          <Pressable onPress={()=>{getImages("Brinquedos")}}>
+            <Image
+              size="md"
+              alt="Image1"
+              source={{
+                uri: "http://placekitten.com/300/300",
+              }}
+            />
+            <Text fontSize={"$lg"} fontWeight={"$bold"}>
+              Brinquedos
+            </Text>
+          </Pressable>
         </View>
       </View>
       <SafeAreaView></SafeAreaView>
