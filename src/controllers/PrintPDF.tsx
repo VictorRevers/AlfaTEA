@@ -1,11 +1,15 @@
 //import { captureRef } from 'react-native-view-shot';
 import * as Print from 'expo-print';
 import { shareAsync } from 'expo-sharing';
+import FileSystem from './FileSystem';
 
 export default class PrintPDF{
 
-    static setHTML(image:any){
-        const html = `
+    static async setHTML(image:any){
+
+      //const img = await FileSystem.uploadPic(image);
+
+      const html = `
         <html>
           <head>
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
@@ -21,7 +25,8 @@ export default class PrintPDF{
         </html>
         `;
 
-        return html;
+      return html;
+        
         
     }
 

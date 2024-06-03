@@ -7,6 +7,7 @@ import { useEffect, useState, useRef } from 'react';
 import {PixelRatio} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import PrintPDF from "../../controllers/PrintPDF";
+import FileSystem from "../../controllers/FileSystem";
 
 
 
@@ -33,8 +34,10 @@ export const FiguresOptions = ({
     format: 'png',
   });
   console.log(result);
-  setSnapShotImage(result);
-  const html = PrintPDF.setHTML(snapshotImage);
+  await FileSystem.createDir();
+  const img = await FileSystem.uploadPic(result);
+  //setSnapShotImage(result);
+  const html = await PrintPDF.setHTML(img);
   PrintPDF.printToFile(html);
 
 }
