@@ -1,13 +1,17 @@
-import { View, Text, Image } from "@gluestack-ui/themed";
+import { View, Text, Image, Link } from "@gluestack-ui/themed";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { NavigationProp } from "@react-navigation/native";
+import { Context } from "../../../App";
+import { useContext } from "react";
 
 export const FiguresOptions = ({
   navigation,
 }: {
   navigation: NavigationProp<any>;
 }) => {
+  const [selectedImage, setSelectedImage] = useContext(Context);
+
   return (
     <View
       display="flex"
@@ -28,64 +32,110 @@ export const FiguresOptions = ({
         p={3}
       >
         <View flexDirection="column" alignItems="center">
-          <Image
-            size="md"
-            alt="Image1"
-            source={{
-              uri: "http://placekitten.com/300/300",
+          <Link
+            onPress={() => {
+              setSelectedImage("Cenários");
+              navigation.navigate("Game");
             }}
-          />
-          <Text fontSize={"$lg"} fontWeight={"$bold"}>
-            Cenários
-          </Text>
+            display="flex"
+            alignItems="center"
+          >
+            <Image
+              size="md"
+              alt="Image1"
+              source={{
+                uri: "http://placekitten.com/300/300",
+              }}
+            />
+            <Text fontSize={"$lg"} fontWeight={"$bold"}>
+              Cenários
+            </Text>
+          </Link>
+        </View>
+
+        <View flexDirection="column" alignItems="center">
+          <Link
+            onPress={() => {
+              setSelectedImage("Personagens");
+              navigation.navigate("Game");
+            }}
+            display="flex"
+            alignItems="center"
+          >
+            <Image
+              size="md"
+              alt="Image1"
+              source={{
+                uri: "http://placekitten.com/300/300",
+              }}
+            />
+            <Text fontSize={"$lg"} fontWeight={"$bold"}>
+              Personagens
+            </Text>
+          </Link>
         </View>
         <View flexDirection="column" alignItems="center">
-          <Image
-            size="md"
-            alt="Image1"
-            source={{
-              uri: "http://placekitten.com/300/300",
+          <Link
+            onPress={() => {
+              setSelectedImage("Animais");
+              navigation.navigate("Game");
             }}
-          />
-          <Text fontSize={"$lg"} fontWeight={"$bold"}>
-            Personagens
-          </Text>
+            display="flex"
+            alignItems="center"
+          >
+            <Image
+              size="md"
+              alt="Image1"
+              source={{
+                uri: "http://placekitten.com/300/300",
+              }}
+            />
+            <Text fontSize={"$lg"} fontWeight={"$bold"}>
+              Animais
+            </Text>
+          </Link>
         </View>
         <View flexDirection="column" alignItems="center">
-          <Image
-            size="md"
-            alt="Image1"
-            source={{
-              uri: "http://placekitten.com/300/300",
+          <Link
+            onPress={() => {
+              setSelectedImage("Objetos");
+              navigation.navigate("Game");
             }}
-          />
-          <Text fontSize={"$lg"} fontWeight={"$bold"}>
-            Animais
-          </Text>
+            display="flex"
+            alignItems="center"
+          >
+            <Image
+              size="md"
+              alt="Image1"
+              source={{
+                uri: "http://placekitten.com/300/300",
+              }}
+            />
+            <Text fontSize={"$lg"} fontWeight={"$bold"}>
+              Objetos
+            </Text>
+          </Link>
         </View>
         <View flexDirection="column" alignItems="center">
-          <Image
-            size="md"
-            alt="Image1"
-            source={{
-              uri: "http://placekitten.com/300/300",
+          <Link
+            onPress={() => {
+              setSelectedImage("Brinquedos");
+              navigation.navigate("Game");
             }}
-          />
-          <Text fontSize={"$lg"} fontWeight={"$bold"}>
-            Objetos
-          </Text>
-        </View>
-        <View flexDirection="column" alignItems="center">
-          <Image
-            size="md"
-            alt="Image1"
-            source={{
-              uri: "http://placekitten.com/300/300",
-            }}
-          />
-          <Text fontSize={"$lg"} fontWeight={"$bold"}>
-            Brinquedos
-          </Text>
+            display="flex"
+            alignItems="center"
+          >
+            <Image
+              size="md"
+              alt="Image1"
+              source={{
+                uri: "http://placekitten.com/300/300",
+              }}
+            />
+            <Text fontSize={"$lg"} fontWeight={"$bold"}>
+              Brinquedos
+            </Text>
+          </Link>
         </View>
       </View>
       <View

@@ -4,6 +4,7 @@ import { Menu } from "../screens/Menu";
 import { Credit } from "../screens/Credit";
 import { Sobre } from "../screens/Sobre";
 import { FiguresOptions } from "../screens/FiguresOptions";
+import { Game } from "../screens/Game";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +18,7 @@ export const Routes = () => {
       <Stack.Screen name="Credit" component={Credit} />
       <Stack.Screen name="Sobre" component={Sobre} />
       <Stack.Screen name="FiguresOptions" component={FiguresOptions} />
+      <Stack.Screen name="Game" component={Game} />
     </Stack.Navigator>
   );
 };

@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     },
     txtCredit: {
         textAlign: "left",
-        fontSize: 10,
+        fontSize: 9,
         fontWeight: "bold",
     },
 });
