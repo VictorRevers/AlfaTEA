@@ -4,8 +4,6 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { NavigationProp } from "@react-navigation/native";
 import { Context } from "../../../App";
 import { useContext, useState } from "react";
-import PointsController from "./PointsCotroller";
-
 
 
 export const FiguresOptions = ({
@@ -17,11 +15,10 @@ export const FiguresOptions = ({
   const [points, setPoints] = useState(0);
 
   const addPoints = ()=>{
-    PointsController.AddPoints();
+    let i: number = points + 1;
+    setPoints(i)
   }
-   const getPoints = () =>{
-    setPoints(PointsController.GetPoints());
-   }
+
   return (
     <View
       display="flex"
