@@ -1,9 +1,12 @@
-import { View, Text, Image, Link } from "@gluestack-ui/themed";
+import { View, Text, Image, Link, Pressable } from "@gluestack-ui/themed";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { NavigationProp } from "@react-navigation/native";
 import { Context } from "../../../App";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import PointsController from "./PointsCotroller";
+
+
 
 export const FiguresOptions = ({
   navigation,
@@ -11,7 +14,14 @@ export const FiguresOptions = ({
   navigation: NavigationProp<any>;
 }) => {
   const [selectedImage, setSelectedImage] = useContext(Context);
+  const [points, setPoints] = useState(0);
 
+  const addPoints = ()=>{
+    PointsController.AddPoints();
+  }
+   const getPoints = () =>{
+    setPoints(PointsController.GetPoints());
+   }
   return (
     <View
       display="flex"
@@ -171,8 +181,29 @@ export const FiguresOptions = ({
             navigation.navigate("Home");
           }}
         />
-        <View>
-          <Text>Stars </Text>
+        <View
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Pressable
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            onPress={() => {addPoints()}}
+          >
+            <Image 
+              size="md"
+              alt="Image1"
+              source={require("../../assets/Images/Teste/star.png")}
+              width={256}
+              
+            />
+            <Text
+              position="absolute"
+            >{points}</Text>
+          </Pressable>
+          
         </View>
         <MaterialCommunityIcons name="printer" size={32} color="black" />
       </View>
