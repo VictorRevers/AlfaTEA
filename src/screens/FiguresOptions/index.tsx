@@ -1,9 +1,17 @@
-import { View, Text, Image, Link, Pressable } from "@gluestack-ui/themed";
+import { View, Text, Image, Link, Pressable, Button } from "@gluestack-ui/themed";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { NavigationProp } from "@react-navigation/native";
+import { captureRef } from 'react-native-view-shot';
+import {PixelRatio} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import PrintPDF from "../../controllers/PrintPDF";
+import ImagesController from "../../controllers/ImagesController";
+
+
+
 import { Context } from "../../../App";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 
 
 export const FiguresOptions = ({
@@ -11,6 +19,37 @@ export const FiguresOptions = ({
 }: {
   navigation: NavigationProp<any>;
 }) => {
+  const viewToSnapShotRef:any = useRef();
+  const [snapshotImage,setSnapShotImage] = useState('');
+  const [images, setImages] = useState(Array<any>);
+
+  const targetPixelCount = 1080; // If you want full HD pictures
+  const pixelRatio = PixelRatio.get(); // The pixel ratio of the device
+  // pixels * pixelRatio = targetPixelCount, so pixels = targetPixelCount / pixelRatio
+  const pixels = targetPixelCount / pixelRatio;
+
+  //take printscreen and turn into PDF
+  const snapshot = async() =>{
+    const result = await captureRef(viewToSnapShotRef, {
+    result: 'data-uri',
+    height: pixels,
+    width: pixels,
+    quality: 1,
+    format: 'png',
+  });
+  console.log(result);
+  const html = await PrintPDF.setHTML(result);
+  PrintPDF.printToFile(html);
+}
+
+  const getImages = (type:string) =>{
+    let imgs = ImagesController.GetImages(type);
+    setImages(imgs);
+    console.log("CLICOU!!!!!!");
+
+    //implement change view...
+  }
+
   const [selectedImage, setSelectedImage] = useContext(Context);
   const [points, setPoints] = useState(0);
 
@@ -58,6 +97,18 @@ export const FiguresOptions = ({
               Cenários
             </Text>
           </Link>
+          <Pressable onPress={()=>{getImages("Cenarios")}}>
+            <Image
+              size="md"
+              alt="Image1"
+              source={{
+                uri: "http://placekitten.com/300/300",
+              }}           
+            />
+            <Text fontSize={"$lg"} fontWeight={"$bold"}>
+              Cenários
+            </Text>
+          </Pressable>
         </View>
 
         <View flexDirection="column" alignItems="center">
@@ -80,6 +131,18 @@ export const FiguresOptions = ({
               Personagens
             </Text>
           </Link>
+          <Pressable onPress={()=>{getImages("Personagens")}}>
+            <Image
+              size="md"
+              alt="Image1"
+              source={{
+                uri: "http://placekitten.com/300/300",
+              }}
+            />
+            <Text fontSize={"$lg"} fontWeight={"$bold"}>
+              Personagens
+            </Text>
+          </Pressable>
         </View>
         <View flexDirection="column" alignItems="center">
           <Link
@@ -101,6 +164,18 @@ export const FiguresOptions = ({
               Animais
             </Text>
           </Link>
+          <Pressable onPress={()=>{getImages("Animais")}}>
+            <Image
+              size="md"
+              alt="Image1"
+              source={{
+                uri: "http://placekitten.com/300/300",
+              }}
+            />
+            <Text fontSize={"$lg"} fontWeight={"$bold"}>
+              Animais
+            </Text>
+          </Pressable>
         </View>
         <View flexDirection="column" alignItems="center">
           <Link
@@ -122,6 +197,18 @@ export const FiguresOptions = ({
               Objetos
             </Text>
           </Link>
+          <Pressable onPress={()=>{getImages("Objetos")}}>
+            <Image
+              size="md"
+              alt="Image1"
+              source={{
+                uri: "http://placekitten.com/300/300",
+              }}
+            />
+            <Text fontSize={"$lg"} fontWeight={"$bold"}>
+              Objetos
+            </Text>
+          </Pressable>
         </View>
         <View flexDirection="column" alignItems="center">
           <Link
@@ -143,9 +230,22 @@ export const FiguresOptions = ({
               Brinquedos
             </Text>
           </Link>
+          <Pressable onPress={()=>{getImages("Brinquedos")}}>
+            <Image
+              size="md"
+              alt="Image1"
+              source={{
+                uri: "http://placekitten.com/300/300",
+              }}
+            />
+            <Text fontSize={"$lg"} fontWeight={"$bold"}>
+              Brinquedos
+            </Text>
+          </Pressable>
         </View>
       </View>
-      <View
+      <SafeAreaView></SafeAreaView>
+      <View ref={viewToSnapShotRef}
         display="flex"
         alignItems="center"
         justifyContent="center"
@@ -202,7 +302,7 @@ export const FiguresOptions = ({
           </Pressable>
           
         </View>
-        <MaterialCommunityIcons name="printer" size={32} color="black" />
+        <Button onPress={snapshot}><MaterialCommunityIcons name="printer" size={32} color="black" /></Button>
       </View>
     </View>
   );

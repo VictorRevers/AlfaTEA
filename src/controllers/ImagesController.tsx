@@ -1,32 +1,28 @@
 import ImagesBase from "../assets/Images/ImagesBase";
-//import { captureRef } from 'react-native-view-shot';
-import * as Print from 'expo-print';
-import { shareAsync } from 'expo-sharing';
 
-//import fs from 'fs';
-import * as fs from 'node:fs/promises';
-
-//let imagesList: Array<string> = [];
 let imagesList: any[];
 
 export default class ImagesController{
   
     static GetImages(type:string){
 
-        //let imagesList = fs.readdir(`../assets/Images/${type}`);
         if(type == "Animais"){
-            imagesList = ImagesBase.Base.Animais;
-            console.log(imagesList[1]);
+            imagesList = ImagesBase.Base.Animais;          
         }
-        
+        else if(type == "Brinquedos"){
+            imagesList = ImagesBase.Base.Brinquedos;
+        }
+        else if(type == "Cenarios"){
+            imagesList = ImagesBase.Base.Cenarios;
+        }
+        else if(type == "Objetos"){
+            imagesList = ImagesBase.Base.Objetos;
+        }
+        else if(type == "Personagens"){
+            imagesList = ImagesBase.Base.Personagens;
+        }
+       
         return imagesList;
-    }
+    }  
 
-    static SelectImage(){
-        
-    }
-
-    static Print(){
-
-    }
 }
