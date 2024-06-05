@@ -19,7 +19,7 @@ export default class PrintPDF{
               Hello Expo!
             </h1>
             <img
-              src`+`=${image}`+
+              src`+`="${image}"`+
               `style="width: 90vw;" />
           </body>
         </html>
