@@ -1,7 +1,6 @@
 //import { captureRef } from 'react-native-view-shot';
 import * as Print from 'expo-print';
 import { shareAsync } from 'expo-sharing';
-import FileSystem from './FileSystem';
 
 export default class PrintPDF{
 
@@ -19,8 +18,8 @@ export default class PrintPDF{
               Hello Expo!
             </h1>
             <img
-              src`+`="${image}"`+
-              `style="width: 90vw;" />
+              src=${image}
+              style="width: 90vw;" />
           </body>
         </html>
         `;

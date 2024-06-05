@@ -7,7 +7,6 @@ import { useEffect, useState, useRef } from 'react';
 import {PixelRatio, Pressable} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import PrintPDF from "../../controllers/PrintPDF";
-import FileSystem from "../../controllers/FileSystem";
 import ImagesController from "../../controllers/ImagesController";
 
 
@@ -30,17 +29,14 @@ export const FiguresOptions = ({
   //take printscreen and turn into PDF
   const snapshot = async() =>{
     const result = await captureRef(viewToSnapShotRef, {
-    result: 'tmpfile',
+    result: 'data-uri',
     height: pixels,
     width: pixels,
     quality: 1,
     format: 'png',
   });
   console.log(result);
-  await FileSystem.createDir();
-  const img = await FileSystem.uploadPic(result);
-  //setSnapShotImage(result);
-  const html = await PrintPDF.setHTML(img);
+  const html = await PrintPDF.setHTML(result);
   PrintPDF.printToFile(html);
 }
 
