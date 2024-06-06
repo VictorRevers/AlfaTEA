@@ -25,7 +25,7 @@ export const FiguresOptions = ({
 }) => {
   const viewToSnapShotRef: any = useRef();
   const [snapshotImage, setSnapShotImage] = useState("");
-  const [images, setImages] = useState(Array<any>);
+  
 
   const targetPixelCount = 1080; // If you want full HD pictures
   const pixelRatio = PixelRatio.get(); // The pixel ratio of the device
@@ -46,13 +46,7 @@ export const FiguresOptions = ({
     PrintPDF.printToFile(html);
   };
 
-  const getImages = (type: string) => {
-    let imgs = ImagesController.GetImages(type);
-    setImages(imgs);
-    console.log("CLICOU!!!!!!");
-
-    //implement change view...
-  };
+  
 
   const [selectedImage, setSelectedImage] = useContext(Context);
   const [points, setPoints] = useState(0);
@@ -85,7 +79,6 @@ export const FiguresOptions = ({
         <View flexDirection="column" alignItems="center">
           <Pressable
             onPress={() => {
-              getImages("Cenarios");
               setSelectedImage("Cenários");
               navigation.navigate("Game");
             }}
@@ -108,7 +101,6 @@ export const FiguresOptions = ({
         <View flexDirection="column" alignItems="center">
           <Pressable
             onPress={() => {
-              getImages("Personagens");
               setSelectedImage("Personagens");
               navigation.navigate("Game");
             }}
@@ -130,7 +122,6 @@ export const FiguresOptions = ({
         <View flexDirection="column" alignItems="center">
           <Pressable
             onPress={() => {
-              getImages("Animais");
               setSelectedImage("Animais");
               navigation.navigate("Game");
             }}
@@ -152,7 +143,6 @@ export const FiguresOptions = ({
         <View flexDirection="column" alignItems="center">
           <Pressable
             onPress={() => {
-              getImages("Objetos");
               setSelectedImage("Objetos");
               navigation.navigate("Game");
             }}
@@ -174,7 +164,6 @@ export const FiguresOptions = ({
         <View flexDirection="column" alignItems="center">
           <Pressable
             onPress={() => {
-              getImages("Brinquedos");
               setSelectedImage("Brinquedos");
               navigation.navigate("Game");
             }}

@@ -10,13 +10,23 @@ import {
   Input,
   InputField,
 } from "@gluestack-ui/themed";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect} from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
+import ImagesController from "../../controllers/ImagesController";
 
 export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
   const [selectedImage, setSelectedImage] = useContext(Context);
   const [word, setWord] = useState<string>("");
+  const [images, setImages] = useState(Array<any>);
+
+  const getImages = (type: string) => {
+    let imgs = ImagesController.GetImages(type);
+    setImages(imgs);
+    console.log("CLICOU!!!!!!");
+
+    //implement change view...
+  };
 
   const handleButtonClick = (letter: string) => {
     setWord((prevValue) =>
@@ -26,6 +36,10 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
   const ClearWord = () => {
     setWord("");
   };
+
+  useEffect(()=>{
+    getImages(selectedImage);
+  });
 
   return (
     <View
@@ -406,4 +420,8 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
       </Button>
     </View>
   );
+
+  
+
+  
 };
