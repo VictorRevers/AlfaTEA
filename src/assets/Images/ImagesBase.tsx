@@ -1,5 +1,7 @@
 export default class ImagesBase{
 
+   
+    
     static Base = {
         Animais: [require('./Figuras/animais/abelha.png'), require('./Figuras/animais/aranha.png'), require('./Figuras/animais/baleia.png'), 
         require('./Figuras/animais/bode.png'), require('./Figuras/animais/boi.png'), require('./Figuras/animais/borboleta.png'), require('./Figuras/animais/cachorro.png'),

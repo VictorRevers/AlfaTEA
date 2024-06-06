@@ -79,7 +79,7 @@ export const FiguresOptions = ({
         <View flexDirection="column" alignItems="center">
           <Pressable
             onPress={() => {
-              setSelectedImage("Cenários");
+              setSelectedImage("Cenarios");
               navigation.navigate("Game");
             }}
             display="flex"

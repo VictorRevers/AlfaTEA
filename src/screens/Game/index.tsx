@@ -20,26 +20,25 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
   const [word, setWord] = useState<string>("");
   const [images, setImages] = useState(Array<any>);
 
-  const getImages = (type: string) => {
-    let imgs = ImagesController.GetImages(type);
-    setImages(imgs);
-    console.log("CLICOU!!!!!!");
+  const imagesList = ImagesController.GetImages(selectedImage);
 
-    //implement change view...
+  const changeImage = () => {
+    //implement change
   };
 
   const handleButtonClick = (letter: string) => {
     setWord((prevValue) =>
       prevValue == "" ? prevValue + letter.toUpperCase() : prevValue + letter
     );
+    console.log(selectedImage);
   };
   const ClearWord = () => {
     setWord("");
   };
 
-  useEffect(()=>{
+  /*useEffect(()=>{
     getImages(selectedImage);
-  });
+  });*/
 
   return (
     <View
@@ -78,9 +77,9 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
                 mt="$4"
                 size="xl"
                 alt="Image1"
-                source={{
+                source={/*{
                   uri: "http://placekitten.com/300/300",
-                }}
+                }*/imagesList[1]}
               />
             </View>
             <View display="flex" alignItems="center" justifyContent="center">

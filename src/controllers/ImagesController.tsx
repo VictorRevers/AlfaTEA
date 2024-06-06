@@ -1,13 +1,13 @@
 import ImagesBase from "../assets/Images/ImagesBase";
 
-let imagesList: any[];
+let imagesList:any[];
 
 export default class ImagesController{
   
     static GetImages(type:string){
 
         if(type == "Animais"){
-            imagesList = ImagesBase.Base.Animais;          
+           imagesList = ImagesBase.Base.Animais;      
         }
         else if(type == "Brinquedos"){
             imagesList = ImagesBase.Base.Brinquedos;
