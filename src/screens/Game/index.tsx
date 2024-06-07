@@ -25,6 +25,7 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
   const imagesList = ImagesController.GetImages(selectedImage);
   const [i, setI] = useState(0);
   console.log("PALAVRA: "+imagesList[i][0]);
+  console.log(imagesList.length);
   
 
   const changeImage = () => {

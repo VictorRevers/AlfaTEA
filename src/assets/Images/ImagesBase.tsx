@@ -3,7 +3,7 @@ export default class ImagesBase{
    
     
     static Base = {
-        Animais: [["ABELHA",require('./Figuras/animais/abelha.png')],["ARANHA",require('./Figuras/animais/aranha.png')] , ["BALEIA", ,require('./Figuras/animais/baleia.png')], 
+        Animais: [["ABELHA",require('./Figuras/animais/abelha.png')],["ARANHA",require('./Figuras/animais/aranha.png')] , ["BALEIA",require('./Figuras/animais/baleia.png')], 
         ["BODE",require('./Figuras/animais/bode.png')], ["BOI",require('./Figuras/animais/boi.png')],["BORBOLETA",require('./Figuras/animais/borboleta.png')] ,["CACHORRO",require('./Figuras/animais/cachorro.png')],
         ["CAMELO",require('./Figuras/animais/camelo.png')],["CARACOL",require('./Figuras/animais/caracol.png')] ,["CAVALO", require('./Figuras/animais/cavalo.png')],["COBRA",require('./Figuras/animais/cobra.png')],
         ["COELHO",require('./Figuras/animais/coelho.png')],["ELEFANTE",require('./Figuras/animais/elefante.png')],["FOCA", require('./Figuras/animais/foca.png')],["GALO",require('./Figuras/animais/galo.png')],
