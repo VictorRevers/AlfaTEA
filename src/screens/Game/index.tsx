@@ -18,12 +18,17 @@ import ImagesController from "../../controllers/ImagesController";
 export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
   const [selectedImage, setSelectedImage] = useContext(Context);
   const [word, setWord] = useState<string>("");
-  const [images, setImages] = useState(Array<any>);
+  const [image, setImage] = useState();
 
   const imagesList = ImagesController.GetImages(selectedImage);
+  const [i, setI] = useState(0);
+  
 
   const changeImage = () => {
-    //implement change
+    if(i <= imagesList.length){
+      setI(i+1);
+    }   
+    console.log(i);
   };
 
   const handleButtonClick = (letter: string) => {
@@ -79,7 +84,7 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
                 alt="Image1"
                 source={/*{
                   uri: "http://placekitten.com/300/300",
-                }*/imagesList[1]}
+                }*/imagesList[i]}
               />
             </View>
             <View display="flex" alignItems="center" justifyContent="center">
@@ -121,6 +126,7 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
               color="red"
               onPress={() => {
                 ClearWord();
+                changeImage();
               }}
             />
           </View>
