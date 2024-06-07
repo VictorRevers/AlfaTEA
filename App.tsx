@@ -8,15 +8,19 @@ import { createContext, useState } from "react";
 
 const Stack = createNativeStackNavigator();
 export const Context = createContext<any>("");
+export const PointsContext = createContext<any>(0);
 export default function App() {
   const [selectedImage, setSelectedImage] = useState("");
+  const [points, setPoints] = useState(0);
   return (
     <NavigationContainer>
       <StatusBar hidden />
       <Context.Provider value={[selectedImage, setSelectedImage]}>
-        <GluestackUIProvider config={config}>
-          <Routes />
-        </GluestackUIProvider>
+        <PointsContext.Provider value={[points, setPoints]}>
+          <GluestackUIProvider config={config}>
+            <Routes />
+          </GluestackUIProvider>
+        </PointsContext.Provider>
       </Context.Provider>
     </NavigationContainer>
   );

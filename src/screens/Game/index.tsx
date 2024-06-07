@@ -1,6 +1,6 @@
 import { NavigationProp } from "@react-navigation/native";
 
-import { Context } from "../../../App";
+import { Context, PointsContext } from "../../../App";
 import {
   View,
   Text,
@@ -19,6 +19,7 @@ import { Pressable } from "react-native";
 
 export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
   const [selectedImage, setSelectedImage] = useContext(Context);
+  const [points, setPoints] = useContext(PointsContext);
   const [word, setWord] = useState<string>("");
   const [image, setImage] = useState();
 
@@ -37,6 +38,14 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
     console.log(i);
   };
 
+  const verifyAnswer = (word: string) => {
+    if(imagesList[i][0] == word.toUpperCase()){
+      setPoints(points + 1);
+    } else{
+      console.log("ERROU A PALAVRA!", word);
+    }
+  }
+
   const handleButtonClick = (letter: string) => {
     setWord((prevValue) =>
       prevValue == "" ? prevValue + letter.toUpperCase() : prevValue + letter
@@ -49,6 +58,10 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
 
   const Tts = () => {
     Speech.speak(word);
+  };
+
+  const speakRightWord = () => {
+    Speech.speak(imagesList[i][0]);
   };
 
   /*useEffect(()=>{
@@ -100,7 +113,7 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
             </View>
             <View display="flex" alignItems="center" justifyContent="center">
               <Box borderColor="black" borderWidth="$2">
-                <AntDesign name="sound" size={40} color="black" />
+                <AntDesign name="sound" size={40} color="black" onPress={() => {speakRightWord()}} />
               </Box>
             </View>
           </View>
@@ -141,7 +154,8 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
           <View
             display="flex"
             alignItems="center"
-            justifyContent="space-between"
+            justifyContent="center"
+            flexDirection="row"
           >
             <MaterialIcons
               name="clear"
@@ -150,6 +164,16 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
               onPress={() => {
                 ClearWord();
                 changeImage();
+              }}
+            />
+            <MaterialIcons
+              name="check"
+              size={48}
+              color="green"
+              onPress={() => {
+                ClearWord();
+                changeImage();
+                verifyAnswer(word);
               }}
             />
           </View>
