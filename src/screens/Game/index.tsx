@@ -10,10 +10,12 @@ import {
   Input,
   InputField,
 } from "@gluestack-ui/themed";
-import { useContext, useState, useEffect} from "react";
+import { useContext, useState, useEffect } from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import ImagesController from "../../controllers/ImagesController";
+import * as Speech from "expo-speech";
+import { Pressable } from "react-native";
 
 export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
   const [selectedImage, setSelectedImage] = useContext(Context);
@@ -34,6 +36,10 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
   };
   const ClearWord = () => {
     setWord("");
+  };
+
+  const Tts = () => {
+    Speech.speak(word);
   };
 
   /*useEffect(()=>{
@@ -77,9 +83,11 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
                 mt="$4"
                 size="xl"
                 alt="Image1"
-                source={/*{
+                source={
+                  /*{
                   uri: "http://placekitten.com/300/300",
-                }*/imagesList[1]}
+                }*/ imagesList[1]
+                }
               />
             </View>
             <View display="flex" alignItems="center" justifyContent="center">
@@ -104,10 +112,22 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
               borderColor="black"
               borderWidth="$2"
             >
-              <InputField placeholder="" value={word} fontWeight="$bold" fontSize="$xl"/>
+              <InputField
+                placeholder=""
+                value={word}
+                fontWeight="$bold"
+                fontSize="$xl"
+              />
             </Input>
             <Box borderColor="black" borderWidth="$2">
-              <AntDesign name="sound" size={40} color="black" />
+              <AntDesign
+                name="sound"
+                size={40}
+                color="black"
+                onPress={() => {
+                  Tts();
+                }}
+              />
             </Box>
           </View>
           <View
@@ -419,8 +439,4 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
       </Button>
     </View>
   );
-
-  
-
-  
 };

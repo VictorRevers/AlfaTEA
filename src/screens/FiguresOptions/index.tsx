@@ -25,7 +25,6 @@ export const FiguresOptions = ({
 }) => {
   const viewToSnapShotRef: any = useRef();
   const [snapshotImage, setSnapShotImage] = useState("");
-  
 
   const targetPixelCount = 1080; // If you want full HD pictures
   const pixelRatio = PixelRatio.get(); // The pixel ratio of the device
@@ -45,8 +44,6 @@ export const FiguresOptions = ({
     const html = await PrintPDF.setHTML(result);
     PrintPDF.printToFile(html);
   };
-
-  
 
   const [selectedImage, setSelectedImage] = useContext(Context);
   const [points, setPoints] = useState(0);
