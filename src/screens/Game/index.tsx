@@ -24,6 +24,7 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
 
   const imagesList = ImagesController.GetImages(selectedImage);
   const [i, setI] = useState(0);
+  console.log("PALAVRA: "+imagesList[i][0]);
   
 
   const changeImage = () => {
@@ -93,7 +94,7 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
                 source={
                   /*{
                   uri: "http://placekitten.com/300/300",
-                }*/imagesList[i]}
+                }*/imagesList[i][1]}
               />
             </View>
             <View display="flex" alignItems="center" justifyContent="center">
