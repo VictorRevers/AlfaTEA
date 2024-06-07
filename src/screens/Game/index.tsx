@@ -27,8 +27,10 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
   
 
   const changeImage = () => {
-    if(i <= imagesList.length){
+    if(i < imagesList.length-1){
       setI(i+1);
+    }else{
+      setI(0);
     }   
     console.log(i);
   };
