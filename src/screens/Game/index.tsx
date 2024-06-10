@@ -16,15 +16,19 @@ import { MaterialIcons } from "@expo/vector-icons";
 import ImagesController from "../../controllers/ImagesController";
 import * as Speech from "expo-speech";
 import { Pressable } from "react-native";
+import { ModalResult } from "../../components/ModalResult";
 
 export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
   const [selectedImage, setSelectedImage] = useContext(Context);
   const [points, setPoints] = useContext(PointsContext);
   const [word, setWord] = useState<string>("");
   const [image, setImage] = useState();
+  const [isCorrect, setIsCorrect] = useState(false);
 
   const imagesList = ImagesController.GetImages(selectedImage);
   const [i, setI] = useState(0);
+  const [openM, setOpenM] = useState(false);
+
   console.log("PALAVRA: "+imagesList[i][0]);
   console.log(imagesList.length);
   
@@ -41,8 +45,9 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
   const verifyAnswer = (word: string) => {
     if(imagesList[i][0] == word.toUpperCase()){
       setPoints(points + 1);
+      setIsCorrect(true);
     } else{
-      console.log("ERROU A PALAVRA!", word);
+      setIsCorrect(false);
     }
   }
 
@@ -171,8 +176,7 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
               size={48}
               color="green"
               onPress={() => {
-                ClearWord();
-                changeImage();
+                setOpenM(true)
                 verifyAnswer(word);
               }}
             />
@@ -457,7 +461,7 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
           </View>
         </View>
       </View>
-
+      
       <Button
         mt="$1"
         alignSelf="flex-start"
@@ -470,6 +474,15 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
           <Text color="white">{selectedImage}</Text>
         </Text>
       </Button>
+
+      <ModalResult 
+        isCorrect={isCorrect} 
+        isOpen={openM}
+        word={word} 
+        points={points} 
+        image={imagesList[i][1]} 
+        onPress={() => {ClearWord(); changeImage()}} 
+      />
     </View>
   );
 };
