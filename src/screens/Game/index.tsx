@@ -69,6 +69,12 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
     Speech.speak(imagesList[i][0]);
   };
 
+  const nextLevel = () => {
+    changeImage();
+    ClearWord();
+    setOpenM(false);
+  };
+
   /*useEffect(()=>{
     getImages(selectedImage);
   });*/
@@ -477,6 +483,7 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
 
       <ModalResult 
         isCorrect={isCorrect} 
+        nextLevel={() => {nextLevel()}}
         isOpen={openM}
         word={word} 
         points={points} 

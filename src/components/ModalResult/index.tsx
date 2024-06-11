@@ -1,4 +1,5 @@
 import { View, Text, Image } from "@gluestack-ui/themed";
+import { MaterialIcons } from "@expo/vector-icons";
 
 type modalProps = {
     word: string,
@@ -7,6 +8,7 @@ type modalProps = {
     isCorrect: boolean,
     isOpen: boolean,
     onPress: () => void,
+    nextLevel: () => void,
 }
 
 export function ModalResult(props: modalProps){
@@ -16,7 +18,7 @@ export function ModalResult(props: modalProps){
                 backgroundColor="white"
                 position="absolute"
                 width="70%"
-                height="80%"
+                height="90%"
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
@@ -91,11 +93,8 @@ export function ModalResult(props: modalProps){
                                 alignItems="center"
                                 justifyContent="center"
                             />
-                            <Text position="absolute" fontWeight="bold" fontSize={30}>
-                                {props.points}
-                            </Text>
+                            <Text position="absolute" fontWeight="bold" fontSize={30}>1</Text>
                         </View>
-                        
                     </View>
                     <View
                         display="flex"
@@ -108,6 +107,20 @@ export function ModalResult(props: modalProps){
                         <Text fontWeight="bold" color="black" fontSize={40}>{props.word}</Text>
                     </View>
                 </View>
+                <View
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                >
+                    <MaterialIcons
+                        name="arrow-forward-ios"
+                        size={38}
+                        color="black"
+                        onPress={() => {
+                            props.nextLevel();
+                        }}
+                    />
+                </View>
             </View>
         )
     } else if(!props.isCorrect && props.isOpen){
@@ -116,7 +129,7 @@ export function ModalResult(props: modalProps){
                 backgroundColor="white"
                 position="absolute"
                 width="70%"
-                height="80%"
+                height="90%"
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
@@ -141,7 +154,7 @@ export function ModalResult(props: modalProps){
                         borderWidth="$2"
                         width="50%"
                     >
-                        <Text color="black" fontWeight="bold" fontSize={25} textAlign="center">{'PARABÉNS!\nVOCÊ ACERTOU!\nGANHOU UMA ESTRELA!\nCONTINUE!'}</Text>
+                        <Text color="black" fontWeight="bold" fontSize={25} textAlign="center">{'NÃO FOI\nDESSA VEZ!\nTENTE\nNOVAMENTE!\nCONTINUE!'}</Text>
                     </View>
                     <View
                         display="flex"
@@ -205,6 +218,20 @@ export function ModalResult(props: modalProps){
                     >
                         <Text fontWeight="bold" color="black" fontSize={40}>{props.word}</Text>
                     </View>
+                </View>
+                <View
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                >
+                    <MaterialIcons
+                        name="arrow-forward-ios"
+                        size={38}
+                        color="black"
+                        onPress={() => {
+                            props.nextLevel();
+                        }}
+                    />
                 </View>
             </View>
         )
