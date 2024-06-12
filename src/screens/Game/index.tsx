@@ -1,6 +1,6 @@
 import { NavigationProp } from "@react-navigation/native";
 
-import { Context, PointsContext } from "../../../App";
+import { Context, PointsContext, RightImagesContext } from "../../../App";
 import {
   View,
   Text,
@@ -17,12 +17,13 @@ import ImagesController from "../../controllers/ImagesController";
 import * as Speech from "expo-speech";
 import { Pressable } from "react-native";
 import { ModalResult } from "../../components/ModalResult";
+import { WordsController } from "../../controllers/WordsController";
 
 export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
   const [selectedImage, setSelectedImage] = useContext(Context);
   const [points, setPoints] = useContext(PointsContext);
+  const [rightImages, setRightImages] = useContext(RightImagesContext);
   const [word, setWord] = useState<string>("");
-  const [image, setImage] = useState();
   const [isCorrect, setIsCorrect] = useState(false);
 
   const imagesList = ImagesController.GetImages(selectedImage);
@@ -46,6 +47,8 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
     if(imagesList[i][0] == word.toUpperCase()){
       setPoints(points + 1);
       setIsCorrect(true);
+      WordsController.addRightWords(imagesList[i]);
+      setRightImages(WordsController.getRightWords());
     } else{
       setIsCorrect(false);
     }

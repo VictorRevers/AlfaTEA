@@ -15,7 +15,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import PrintPDF from "../../controllers/PrintPDF";
 import ImagesController from "../../controllers/ImagesController";
 
-import { Context, PointsContext } from "../../../App";
+import { Context, PointsContext, RightImagesContext } from "../../../App";
 import { useContext, useState, useEffect, useRef } from "react";
 
 export const FiguresOptions = ({
@@ -47,6 +47,14 @@ export const FiguresOptions = ({
 
   const [selectedImage, setSelectedImage] = useContext(Context);
   const [points, setPoints] = useContext(PointsContext);
+  const [rightImages, setRightImages] = useContext(RightImagesContext);
+
+  const printRightImages = () => {
+    rightImages.forEach((image: any) => {
+      console.log(image[0]);
+      console.log(rightImages.length);
+    });
+  }
   /*const [points, setPoints] = useState(0);
 
   const addPoints = () => {
@@ -219,6 +227,7 @@ export const FiguresOptions = ({
             display="flex"
             alignItems="center"
             justifyContent="center"
+            onPress={() => {printRightImages()}}
           >
             <Image
               size="md"
