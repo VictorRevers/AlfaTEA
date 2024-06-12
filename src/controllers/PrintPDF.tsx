@@ -20,6 +20,21 @@ export default class PrintPDF{
             <img
               src=${image}
               style="width: 90vw;" />
+              <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+              <div>
+                <ul>
+                  <li>a</li>
+                  <li>b</li>
+                  <li>c</li>
+                  <li>d</li>
+                  <li>e</li>
+                  <li>f</li>
+                  <li>g</li>
+                  <li>h</li>
+                  <li>i</li>
+                  <li>j</li>
+                </ul>
+              </div>
           </body>
         </html>
         `;
