@@ -4,8 +4,8 @@ import { shareAsync } from 'expo-sharing';
 
 export default class PrintPDF{
 
-    static async setHTML(image:any){
-
+    static async setHTML(image:any, words:string[]){
+  
       //const img = await FileSystem.uploadPic(image);
 
       const html = `
@@ -22,20 +22,14 @@ export default class PrintPDF{
               style="width: 90vw;" />
               <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
               <div>
-                <ul>
-                  <li>a</li>
-                  <li>b</li>
-                  <li>c</li>
-                  <li>d</li>
-                  <li>e</li>
-                  <li>f</li>
-                  <li>g</li>
-                  <li>h</li>
-                  <li>i</li>
-                  <li>j</li>
+                <ul class="wordsList">
+                  ${words.map(x=> 
+                    `<li>${x[0]}</li>`
+                  ).join('')}
                 </ul>
               </div>
           </body>
+          
         </html>
         `;
 

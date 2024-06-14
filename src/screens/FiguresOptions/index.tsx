@@ -31,19 +31,6 @@ export const FiguresOptions = ({
   // pixels * pixelRatio = targetPixelCount, so pixels = targetPixelCount / pixelRatio
   const pixels = targetPixelCount / pixelRatio;
 
-  //take printscreen and turn into PDF
-  const snapshot = async () => {
-    const result = await captureRef(viewToSnapShotRef, {
-      result: "data-uri",
-      height: pixels,
-      width: pixels,
-      quality: 1,
-      format: "png",
-    });
-    console.log(result);
-    const html = await PrintPDF.setHTML(result);
-    PrintPDF.printToFile(html);
-  };
 
   const [selectedImage, setSelectedImage] = useContext(Context);
   const [points, setPoints] = useContext(PointsContext);
@@ -55,6 +42,22 @@ export const FiguresOptions = ({
       console.log(rightImages.length);
     });
   }
+
+  //take printscreen and turn into PDF
+  const snapshot = async () => {
+    const result = await captureRef(viewToSnapShotRef, {
+      result: "data-uri",
+      height: pixels,
+      width: pixels,
+      quality: 1,
+      format: "png",
+    });
+    console.log(result);
+    const html = await PrintPDF.setHTML(result,rightImages);
+    PrintPDF.printToFile(html);
+  };
+
+  
   /*const [points, setPoints] = useState(0);
 
   const addPoints = () => {
