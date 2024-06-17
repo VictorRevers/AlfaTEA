@@ -15,8 +15,15 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import PrintPDF from "../../controllers/PrintPDF";
 import ImagesController from "../../controllers/ImagesController";
 
+
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
+
 import { Context, PointsContext, RightImagesContext } from "../../../App";
 import { useContext, useState, useEffect, useRef } from "react";
+import ModalImage from "../../components/ModalImage";
+import { StatusBar } from "expo-status-bar";
+import ImageList from "../../components/ImageList";
 
 export const FiguresOptions = ({
   navigation,
@@ -25,6 +32,8 @@ export const FiguresOptions = ({
 }) => {
   const viewToSnapShotRef: any = useRef();
   const [snapshotImage, setSnapShotImage] = useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [pickedImage, setPickedImage] = useState(null);
 
   const targetPixelCount = 1080; // If you want full HD pictures
   const pixelRatio = PixelRatio.get(); // The pixel ratio of the device
@@ -43,6 +52,23 @@ export const FiguresOptions = ({
     });
   }
 
+  const onAddSticker = () => {
+    setIsModalVisible(true);
+  };
+
+  const onModalClose = () => {
+    setIsModalVisible(false);
+  };
+
+  const translateX = useSharedValue(0);
+  const translateY = useSharedValue(0);
+
+  const drag = Gesture.Pan()
+    .onChange((event) => {
+      translateX.value += event.changeX;
+      translateY.value += event.changeY;
+    });
+
   //take printscreen and turn into PDF
   const snapshot = async () => {
     const result = await captureRef(viewToSnapShotRef, {
@@ -56,6 +82,20 @@ export const FiguresOptions = ({
     const html = await PrintPDF.setHTML(result,rightImages);
     PrintPDF.printToFile(html);
   };
+
+  const containerStyle = useAnimatedStyle(() => {
+    return {
+      transform: [
+        {
+          translateX: translateX.value,
+        },
+        {
+          translateY: translateY.value,
+        },
+      ],
+    };
+  });
+  
 
   
   /*const [points, setPoints] = useState(0);
@@ -193,21 +233,26 @@ export const FiguresOptions = ({
         </View>
       </View>
       <SafeAreaView></SafeAreaView>
-      <View
-        ref={viewToSnapShotRef}
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        flexDirection="row"
-        borderColor="$black"
-        mt={4}
-        borderWidth={"$1"}
-        w={"90%"}
-        h={"55%"}
-        p={2}
-      >
-        <Text>Draws</Text>
-      </View>
+      
+      <GestureDetector gesture={drag}>
+        <Animated.View
+          style={[containerStyle, { 
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    flexDirection: "row",
+                                    marginTop: 4,
+                                    width: "90%",
+                                    height: "55%",
+                                    borderWidth: 1,
+                                    padding: 2,
+                                    borderColor: "black",
+                                  }]}
+        >
+
+        </Animated.View>
+      </GestureDetector>
+
       <View
         display="flex"
         alignItems="center"
@@ -249,6 +294,12 @@ export const FiguresOptions = ({
         <Button onPress={snapshot} bg="#f4f4f4">
           <MaterialCommunityIcons name="printer" size={32} color="black" />
         </Button>
+      </View>
+      <View>
+        <ModalImage isVisible={isModalVisible} onClose={() => {onModalClose()}}>
+          <ImageList onSelect={setPickedImage} onCloseModal={onModalClose} />
+        </ModalImage>
+        <StatusBar style="auto" />
       </View>
     </View>
   );
