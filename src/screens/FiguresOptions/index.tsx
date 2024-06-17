@@ -275,7 +275,7 @@ export const FiguresOptions = ({
             display="flex"
             alignItems="center"
             justifyContent="center"
-            onPress={() => {printRightImages()}}
+            onPress={() => {onAddSticker()}}
           >
             <Image
               size="md"
@@ -297,7 +297,7 @@ export const FiguresOptions = ({
       </View>
       <View>
         <ModalImage isVisible={isModalVisible} onClose={() => {onModalClose()}}>
-          <ImageList onSelect={setPickedImage} onCloseModal={onModalClose} />
+          <ImageList onSelect={setPickedImage} images={rightImages} onCloseModal={onModalClose} />
         </ModalImage>
         <StatusBar style="auto" />
       </View>

@@ -4,23 +4,20 @@ import { StyleSheet, FlatList, Image, Platform, Pressable } from 'react-native';
 type imageListProps = {
     onSelect: (item: any) => void;
     onCloseModal: () => void;
+    images: [];
 }
 
 export default function ImageList(props: imageListProps) {
-  const [image] = useState([
-    require('../assets/images/emoji1.png'),
-    require('../assets/images/emoji2.png'),
-    require('../assets/images/emoji3.png'),
-    require('../assets/images/emoji4.png'),
-    require('../assets/images/emoji5.png'),
-    require('../assets/images/emoji6.png'),
-  ]);
+  let imagesPath: any = [];
+  props.images.forEach(image => {
+    imagesPath.push(image[1])
+  });
 
   return (
     <FlatList
       horizontal
       showsHorizontalScrollIndicator={Platform.OS === 'web'}
-      data={image}
+      data={imagesPath}
       contentContainerStyle={styles.listContainer}
       renderItem={({ item, index }) => (
         <Pressable
