@@ -47,10 +47,24 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
     if(imagesList[i][0] == word.toUpperCase()){
       setPoints(points + 1);
       setIsCorrect(true);
-      WordsController.addRightWords(imagesList[i]);
-      setRightImages(WordsController.getRightWords());
+      verifyList();
     } else{
       setIsCorrect(false);
+    }
+  }
+
+  const verifyList = () => {
+    let existWord: boolean = false;
+
+    WordsController.getRightWords().forEach(image => {
+      if(image[0] == imagesList[i][0]){
+        existWord = true;
+      }
+    })
+
+    if(!existWord){
+      WordsController.addRightWords(imagesList[i]);
+      setRightImages(WordsController.getRightWords());
     }
   }
 

@@ -24,6 +24,7 @@ import { useContext, useState, useEffect, useRef } from "react";
 import ModalImage from "../../components/ModalImage";
 import { StatusBar } from "expo-status-bar";
 import ImageList from "../../components/ImageList";
+import ImageSticker from "../../components/ImageSticker";
 
 export const FiguresOptions = ({
   navigation,
@@ -234,24 +235,21 @@ export const FiguresOptions = ({
       </View>
       <SafeAreaView></SafeAreaView>
       
-      <GestureDetector gesture={drag}>
-        <Animated.View
-          style={[containerStyle, { 
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    flexDirection: "row",
-                                    marginTop: 4,
-                                    width: "90%",
-                                    height: "55%",
-                                    borderWidth: 1,
-                                    padding: 2,
-                                    borderColor: "black",
-                                  }]}
-        >
-
-        </Animated.View>
-      </GestureDetector>
+      <View
+        ref={viewToSnapShotRef}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        flexDirection="row"
+        borderColor="$black"
+        mt={4}
+        borderWidth={"$1"}
+        w={"90%"}
+        h={"55%"}
+        p={2}
+      >
+        {pickedImage && <ImageSticker imageSize={60} stickerSource={pickedImage} />}
+      </View>
 
       <View
         display="flex"

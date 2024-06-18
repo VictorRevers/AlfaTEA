@@ -10,7 +10,7 @@ type imageListProps = {
 export default function ImageList(props: imageListProps) {
   let imagesPath: any = [];
   props.images.forEach(image => {
-    imagesPath.push(image[1])
+    imagesPath.push(image[1]);
   });
 
   return (
@@ -22,6 +22,7 @@ export default function ImageList(props: imageListProps) {
       renderItem={({ item, index }) => (
         <Pressable
           onPress={() => {
+            console.log(item);
             props.onSelect(item);
             props.onCloseModal();
           }}>

@@ -25,7 +25,7 @@ export default function ModalImage(props: modalProps) {
 
 const styles = StyleSheet.create({
     modalContent: {
-      height: '25%',
+      height: '45%',
       width: '100%',
       backgroundColor: '#25292e',
       borderTopRightRadius: 18,
