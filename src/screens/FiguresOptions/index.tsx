@@ -26,6 +26,10 @@ import { StatusBar } from "expo-status-bar";
 import ImageList from "../../components/ImageList";
 import ImageSticker from "../../components/ImageSticker";
 
+interface imageStickerProps {
+  id: number;
+}
+
 export const FiguresOptions = ({
   navigation,
 }: {
@@ -34,7 +38,8 @@ export const FiguresOptions = ({
   const viewToSnapShotRef: any = useRef();
   const [snapshotImage, setSnapShotImage] = useState("");
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [pickedImage, setPickedImage] = useState(null);
+  const [pickedImage, setPickedImage] = useState<any>([]);
+  const [imageComponents, setImageComponents] = useState<imageStickerProps[]>([]);
 
   const targetPixelCount = 1080; // If you want full HD pictures
   const pixelRatio = PixelRatio.get(); // The pixel ratio of the device
@@ -55,6 +60,43 @@ export const FiguresOptions = ({
 
   const onAddSticker = () => {
     setIsModalVisible(true);
+  };
+
+  const addSticker = (item: any) => {
+    let imageAux: any [] = pickedImage;
+    let imageExist: boolean = false;
+    imageAux.push(item);
+
+    setPickedImage(imageAux);
+    setImageComponents([...imageComponents, {id: imageComponents.length + 1}]);
+
+    /*imageAux.forEach(image => {
+      if(image == item){
+        imageExist = true;
+      }
+
+    });
+
+    if(!imageExist){
+      setPickedImage(imageAux);
+      setImageComponents([...imageComponents, {id: imageComponents.length + 1}]);
+    }*/
+    /*if(pickedImage.length == 0){
+      setPickedImage(imageAux);
+      setImageComponents([...imageComponents, {id: imageComponents.length + 1}]);
+    } else if(pickedImage.length > 0){
+      for(let i = 0; i < pickedImage.length; i++){
+        if(pickedImage[i] == item){
+          imageExist = true;
+        }
+      }
+
+      if(!imageExist){
+        setPickedImage(imageAux);
+        setImageComponents([...imageComponents, {id: imageComponents.length + 1}]);
+      }
+    }*/
+    
   };
 
   const onModalClose = () => {
@@ -248,7 +290,8 @@ export const FiguresOptions = ({
         h={"55%"}
         p={2}
       >
-        {pickedImage && <ImageSticker imageSize={60} stickerSource={pickedImage} />}
+        {imageComponents.map(image => <ImageSticker id={image.id} key={image.id} imageSize={60} stickerSource={pickedImage[image.id - 1]} />
+      )}
       </View>
 
       <View
@@ -295,7 +338,7 @@ export const FiguresOptions = ({
       </View>
       <View>
         <ModalImage isVisible={isModalVisible} onClose={() => {onModalClose()}}>
-          <ImageList onSelect={setPickedImage} images={rightImages} onCloseModal={onModalClose} />
+          <ImageList onSelect={addSticker} images={rightImages} onCloseModal={onModalClose} />
         </ModalImage>
         <StatusBar style="auto" />
       </View>
