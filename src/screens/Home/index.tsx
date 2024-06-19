@@ -7,7 +7,9 @@ export const Home = ({ navigation }: { navigation: NavigationProp<any> }) => {
   return (
     <View style={styles.container}>
       <View style={styles.btnAprenda}>
-        <ButtonMenu type="aprenda" onPress={() => {}} />
+        <ButtonMenu type="aprenda" onPress={() => {
+          navigation.navigate("LearnHowToPlay");
+        }} />
       </View>
       <View style={styles.btnPlay}>
         <ButtonMenu
