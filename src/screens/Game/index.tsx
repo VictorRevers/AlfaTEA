@@ -13,9 +13,9 @@ import {
 import { useContext, useState, useEffect } from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import ImagesController from "../../controllers/ImagesController";
 import * as Speech from "expo-speech";
-import { Pressable } from "react-native";
 import { ModalResult } from "../../components/ModalResult";
 import { WordsController } from "../../controllers/WordsController";
 
@@ -30,29 +30,28 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
   const [i, setI] = useState(0);
   const [openM, setOpenM] = useState(false);
 
-  console.log("PALAVRA: "+imagesList[i][0]);
+  console.log("PALAVRA: " + imagesList[i][0]);
   console.log(imagesList.length);
-  
 
   const changeImage = () => {
-    if(i < imagesList.length-1){
-      setI(i+1);
-    }else{
+    if (i < imagesList.length - 1) {
+      setI(i + 1);
+    } else {
       setI(0);
-    }   
+    }
     console.log(i);
   };
 
   const verifyAnswer = (word: string) => {
-    if(imagesList[i][0] == word.toUpperCase()){
+    if (imagesList[i][0] == word.toUpperCase()) {
       setPoints(points + 1);
       setIsCorrect(true);
       WordsController.addRightWords(imagesList[i]);
       setRightImages(WordsController.getRightWords());
-    } else{
+    } else {
       setIsCorrect(false);
     }
-  }
+  };
 
   const handleButtonClick = (letter: string) => {
     setWord((prevValue) =>
@@ -122,12 +121,20 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
                 source={
                   /*{
                   uri: "http://placekitten.com/300/300",
-                }*/imagesList[i][1]}
+                }*/ imagesList[i][1]
+                }
               />
             </View>
             <View display="flex" alignItems="center" justifyContent="center">
               <Box borderColor="black" borderWidth="$2">
-                <AntDesign name="sound" size={40} color="black" onPress={() => {speakRightWord()}} />
+                <AntDesign
+                  name="sound"
+                  size={40}
+                  color="black"
+                  onPress={() => {
+                    speakRightWord();
+                  }}
+                />
               </Box>
             </View>
           </View>
@@ -170,14 +177,24 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
             alignItems="center"
             justifyContent="center"
             flexDirection="row"
+            gap={"$1"}
+            pr={"$12"}
           >
+            <MaterialCommunityIcons
+              name="reload"
+              size={40}
+              color="blue"
+              onPress={() => {
+                ClearWord();
+                changeImage();
+              }}
+            />
             <MaterialIcons
               name="clear"
               size={48}
               color="red"
               onPress={() => {
                 ClearWord();
-                changeImage();
               }}
             />
             <MaterialIcons
@@ -185,7 +202,7 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
               size={48}
               color="green"
               onPress={() => {
-                setOpenM(true)
+                setOpenM(true);
                 verifyAnswer(word);
               }}
             />
@@ -198,7 +215,7 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
           flexDirection="column"
           borderColor="black"
           borderWidth="$2"
-          pt="$4"
+          pt="$1"
           mb="$8"
         >
           <View
@@ -206,7 +223,7 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
             alignItems="center"
             justifyContent="center"
             flexDirection="row"
-            gap="$8"
+            gap="$7"
           >
             <Box w="$8">
               <Text
@@ -226,7 +243,7 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
                 B
               </Text>
             </Box>
-            <Box w="$8">
+            <Box w="$7">
               <Text
                 fontSize="$4xl"
                 fontWeight="$bold"
@@ -277,7 +294,7 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
             alignItems="center"
             justifyContent="center"
             flexDirection="row"
-            gap="$8"
+            gap="$7"
           >
             <Box w="$8">
               <Text
@@ -349,7 +366,7 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
             alignItems="center"
             justifyContent="center"
             flexDirection="row"
-            gap="$8"
+            gap="$7"
           >
             <Box w="$8">
               <Text
@@ -420,7 +437,7 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
             alignItems="center"
             justifyContent="center"
             flexDirection="row"
-            gap="$8"
+            gap="$7"
           >
             <Box w="$8">
               <Text
@@ -468,9 +485,62 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
               </Text>
             </Box>
           </View>
+          <View
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            flexDirection="row"
+            gap="$7"
+          >
+            <Box w="$8">
+              <Text
+                fontSize="$4xl"
+                fontWeight="$bold"
+                onPress={() => handleButtonClick("á")}
+              >
+                Á
+              </Text>
+            </Box>
+            <Box w="$8">
+              <Text
+                fontSize="$4xl"
+                fontWeight="$bold"
+                onPress={() => handleButtonClick("ã")}
+              >
+                Ã
+              </Text>
+            </Box>
+            <Box w="$8">
+              <Text
+                fontSize="$4xl"
+                fontWeight="$bold"
+                onPress={() => handleButtonClick("é")}
+              >
+                É
+              </Text>
+            </Box>
+            <Box w="$8">
+              <Text
+                fontSize="$4xl"
+                fontWeight="$bold"
+                onPress={() => handleButtonClick("ó")}
+              >
+                Ó
+              </Text>
+            </Box>
+            <Box w="$8">
+              <Text
+                fontSize="$4xl"
+                fontWeight="$bold"
+                onPress={() => handleButtonClick("ô")}
+              >
+                Ô
+              </Text>
+            </Box>
+          </View>
         </View>
       </View>
-      
+
       <Button
         mt="$1"
         alignSelf="flex-start"
@@ -484,14 +554,19 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
         </Text>
       </Button>
 
-      <ModalResult 
-        isCorrect={isCorrect} 
-        nextLevel={() => {nextLevel()}}
+      <ModalResult
+        isCorrect={isCorrect}
+        nextLevel={() => {
+          nextLevel();
+        }}
         isOpen={openM}
-        word={word} 
-        points={points} 
-        image={imagesList[i][1]} 
-        onPress={() => {ClearWord(); changeImage()}} 
+        word={word}
+        points={points}
+        image={imagesList[i][1]}
+        onPress={() => {
+          ClearWord();
+          changeImage();
+        }}
       />
     </View>
   );
