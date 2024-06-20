@@ -19,17 +19,25 @@ export default function ImageSticker(props: imageStickerProps) {
             translateX.value += event.changeX;
             translateY.value += event.changeY;
           } else if((translateY.value >= 81 || translateY.value <= -81) && translateX.value < 316 && translateX.value > -316){
-            translateX.value += event.changeX;
-            if((event.changeY < 0 && translateY.value >= 81) || (event.changeY > 0 && translateY.value <= -81)){
-              translateY.value += event.changeY;
-            }
-          } else if((translateX.value >= 316 || translateX.value <= -316)){
-            translateY.value += event.changeY;
-            if((event.changeX < 0 && translateX.value >= 316) || (event.changeX > 0 && translateX.value <= -316)){
               translateX.value += event.changeX;
-            }
+              if((event.changeY < 0 && translateY.value >= 81) || (event.changeY > 0 && translateY.value <= -81)){
+                translateY.value += event.changeY;
+              }
+          } else if((translateX.value >= 316 || translateX.value <= -316) && translateY.value < 81 && translateY.value > -81){
+              translateY.value += event.changeY;
+              if((event.changeX < 0 && translateX.value >= 316) || (event.changeX > 0 && translateX.value <= -316)){
+                translateX.value += event.changeX;
+              }
+          } else if((translateX.value >= 316 || translateX.value <= -316) && translateY.value > 81 || translateY.value < -81){
+              if((event.changeY < 0 && translateY.value >= 81) || (event.changeY > 0 && translateY.value <= -81)){
+                translateY.value += event.changeY;
+              }
+              if((event.changeX < 0 && translateX.value >= 316) || (event.changeX > 0 && translateX.value <= -316)){
+                translateX.value += event.changeX;
+              }
           }
-          console.log(event.changeX);
+          console.log("Translate X: ", translateX.value);
+          console.log("Translate Y: ", translateY.value);
         });
 
     const imageStyle = useAnimatedStyle(() => {
@@ -50,6 +58,7 @@ export default function ImageSticker(props: imageStickerProps) {
               translateY: translateY.value,
             },
           ],
+          position: "absolute",
         };
       }); 
   

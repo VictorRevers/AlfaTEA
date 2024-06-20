@@ -246,7 +246,6 @@ export const FiguresOptions = ({
         display="flex"
         alignItems="center"
         justifyContent="center"
-        flexDirection="row"
         borderColor="$black"
         mt={4}
         borderWidth={"$1"}
