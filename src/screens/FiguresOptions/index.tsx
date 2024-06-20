@@ -13,11 +13,6 @@ import { captureRef } from "react-native-view-shot";
 import { PixelRatio } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import PrintPDF from "../../controllers/PrintPDF";
-import ImagesController from "../../controllers/ImagesController";
-
-
-import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 
 import { Context, PointsContext, RightImagesContext } from "../../../App";
 import { useContext, useState, useEffect, useRef } from "react";
@@ -50,13 +45,6 @@ export const FiguresOptions = ({
   const [selectedImage, setSelectedImage] = useContext(Context);
   const [points, setPoints] = useContext(PointsContext);
   const [rightImages, setRightImages] = useContext(RightImagesContext);
-
-  const printRightImages = () => {
-    rightImages.forEach((image: any) => {
-      console.log(image[0]);
-      console.log(rightImages.length);
-    });
-  }
 
   const onAddSticker = () => {
     setIsModalVisible(true);
@@ -103,15 +91,6 @@ export const FiguresOptions = ({
     setIsModalVisible(false);
   };
 
-  const translateX = useSharedValue(0);
-  const translateY = useSharedValue(0);
-
-  const drag = Gesture.Pan()
-    .onChange((event) => {
-      translateX.value += event.changeX;
-      translateY.value += event.changeY;
-    });
-
   //take printscreen and turn into PDF
   const snapshot = async () => {
     const result = await captureRef(viewToSnapShotRef, {
@@ -125,21 +104,6 @@ export const FiguresOptions = ({
     const html = await PrintPDF.setHTML(result,rightImages);
     PrintPDF.printToFile(html);
   };
-
-  const containerStyle = useAnimatedStyle(() => {
-    return {
-      transform: [
-        {
-          translateX: translateX.value,
-        },
-        {
-          translateY: translateY.value,
-        },
-      ],
-    };
-  });
-  
-
   
   /*const [points, setPoints] = useState(0);
 

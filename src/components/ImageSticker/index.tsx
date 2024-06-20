@@ -15,9 +15,22 @@ export default function ImageSticker(props: imageStickerProps) {
 
     const drag = Gesture.Pan()
         .onChange((event) => {
-        translateX.value += event.changeX;
-        translateY.value += event.changeY;
-    });
+          if((translateY.value < 81 && translateY.value > -81) && (translateX.value < 316 && translateX.value > -316)){
+            translateX.value += event.changeX;
+            translateY.value += event.changeY;
+          } else if((translateY.value >= 81 || translateY.value <= -81) && translateX.value < 316 && translateX.value > -316){
+            translateX.value += event.changeX;
+            if((event.changeY < 0 && translateY.value >= 81) || (event.changeY > 0 && translateY.value <= -81)){
+              translateY.value += event.changeY;
+            }
+          } else if((translateX.value >= 316 || translateX.value <= -316)){
+            translateY.value += event.changeY;
+            if((event.changeX < 0 && translateX.value >= 316) || (event.changeX > 0 && translateX.value <= -316)){
+              translateX.value += event.changeX;
+            }
+          }
+          console.log(event.changeX);
+        });
 
     const imageStyle = useAnimatedStyle(() => {
         return {
