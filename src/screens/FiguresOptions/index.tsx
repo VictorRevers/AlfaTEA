@@ -13,10 +13,17 @@ import { captureRef } from "react-native-view-shot";
 import { PixelRatio } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import PrintPDF from "../../controllers/PrintPDF";
-import ImagesController from "../../controllers/ImagesController";
 
 import { Context, PointsContext, RightImagesContext } from "../../../App";
 import { useContext, useState, useEffect, useRef } from "react";
+import ModalImage from "../../components/ModalImage";
+import { StatusBar } from "expo-status-bar";
+import ImageList from "../../components/ImageList";
+import ImageSticker from "../../components/ImageSticker";
+
+interface imageStickerProps {
+  id: number;
+}
 
 export const FiguresOptions = ({
   navigation,
@@ -25,6 +32,9 @@ export const FiguresOptions = ({
 }) => {
   const viewToSnapShotRef: any = useRef();
   const [snapshotImage, setSnapShotImage] = useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [pickedImage, setPickedImage] = useState<any>([]);
+  const [imageComponents, setImageComponents] = useState<imageStickerProps[]>([]);
 
   const targetPixelCount = 1080; // If you want full HD pictures
   const pixelRatio = PixelRatio.get(); // The pixel ratio of the device
@@ -36,12 +46,50 @@ export const FiguresOptions = ({
   const [points, setPoints] = useContext(PointsContext);
   const [rightImages, setRightImages] = useContext(RightImagesContext);
 
-  const printRightImages = () => {
-    rightImages.forEach((image: any) => {
-      console.log(image[0]);
-      console.log(rightImages.length);
+  const onAddSticker = () => {
+    setIsModalVisible(true);
+  };
+
+  const addSticker = (item: any) => {
+    let imageAux: any [] = pickedImage;
+    let imageExist: boolean = false;
+    imageAux.push(item);
+
+    setPickedImage(imageAux);
+    setImageComponents([...imageComponents, {id: imageComponents.length + 1}]);
+
+    /*imageAux.forEach(image => {
+      if(image == item){
+        imageExist = true;
+      }
+
     });
-  }
+
+    if(!imageExist){
+      setPickedImage(imageAux);
+      setImageComponents([...imageComponents, {id: imageComponents.length + 1}]);
+    }*/
+    /*if(pickedImage.length == 0){
+      setPickedImage(imageAux);
+      setImageComponents([...imageComponents, {id: imageComponents.length + 1}]);
+    } else if(pickedImage.length > 0){
+      for(let i = 0; i < pickedImage.length; i++){
+        if(pickedImage[i] == item){
+          imageExist = true;
+        }
+      }
+
+      if(!imageExist){
+        setPickedImage(imageAux);
+        setImageComponents([...imageComponents, {id: imageComponents.length + 1}]);
+      }
+    }*/
+    
+  };
+
+  const onModalClose = () => {
+    setIsModalVisible(false);
+  };
 
   //take printscreen and turn into PDF
   const snapshot = async () => {
@@ -56,7 +104,6 @@ export const FiguresOptions = ({
     const html = await PrintPDF.setHTML(result,rightImages);
     PrintPDF.printToFile(html);
   };
-
   
   /*const [points, setPoints] = useState(0);
 
@@ -193,12 +240,12 @@ export const FiguresOptions = ({
         </View>
       </View>
       <SafeAreaView></SafeAreaView>
+      
       <View
         ref={viewToSnapShotRef}
         display="flex"
         alignItems="center"
         justifyContent="center"
-        flexDirection="row"
         borderColor="$black"
         mt={4}
         borderWidth={"$1"}
@@ -206,8 +253,10 @@ export const FiguresOptions = ({
         h={"55%"}
         p={2}
       >
-        <Text>Draws</Text>
+        {imageComponents.map(image => <ImageSticker id={image.id} key={image.id} imageSize={60} stickerSource={pickedImage[image.id - 1]} />
+      )}
       </View>
+
       <View
         display="flex"
         alignItems="center"
@@ -230,7 +279,7 @@ export const FiguresOptions = ({
             display="flex"
             alignItems="center"
             justifyContent="center"
-            onPress={() => {printRightImages()}}
+            onPress={() => {onAddSticker()}}
           >
             <Image
               size="md"
@@ -249,6 +298,12 @@ export const FiguresOptions = ({
         <Button onPress={snapshot} bg="#f4f4f4">
           <MaterialCommunityIcons name="printer" size={32} color="black" />
         </Button>
+      </View>
+      <View>
+        <ModalImage isVisible={isModalVisible} onClose={() => {onModalClose()}}>
+          <ImageList onSelect={addSticker} images={rightImages} onCloseModal={onModalClose} />
+        </ModalImage>
+        <StatusBar style="auto" />
       </View>
     </View>
   );

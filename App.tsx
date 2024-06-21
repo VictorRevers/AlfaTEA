@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Routes } from "./src/routes/routes";
 import { StatusBar } from "expo-status-bar";
 import { createContext, useState } from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const Stack = createNativeStackNavigator();
 export const Context = createContext<any>("");
@@ -17,15 +18,17 @@ export default function App() {
   return (
     <NavigationContainer>
       <StatusBar hidden />
-      <Context.Provider value={[selectedImage, setSelectedImage]}>
-        <RightImagesContext.Provider value={[rightImages, setRightImages]}>
-          <PointsContext.Provider value={[points, setPoints]}>
-            <GluestackUIProvider config={config}>
-              <Routes />
-            </GluestackUIProvider>
-          </PointsContext.Provider>
-        </RightImagesContext.Provider>
-      </Context.Provider>
+      <GestureHandlerRootView>
+        <Context.Provider value={[selectedImage, setSelectedImage]}>
+          <RightImagesContext.Provider value={[rightImages, setRightImages]}>
+            <PointsContext.Provider value={[points, setPoints]}>
+              <GluestackUIProvider config={config}>
+                <Routes />
+              </GluestackUIProvider>
+            </PointsContext.Provider>
+          </RightImagesContext.Provider>
+        </Context.Provider>
+      </GestureHandlerRootView>
     </NavigationContainer>
   );
 }
