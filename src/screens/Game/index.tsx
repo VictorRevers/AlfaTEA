@@ -68,6 +68,7 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
   }
 
   const handleButtonClick = (letter: string) => {
+    speakLetter(letter);
     setWord((prevValue) =>
       prevValue == "" ? prevValue + letter.toUpperCase() : prevValue + letter
     );
@@ -79,6 +80,10 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
 
   const Tts = () => {
     Speech.speak(word);
+  };
+
+  const speakLetter = (letter: string) => {
+    Speech.speak(letter);
   };
 
   const speakRightWord = () => {
