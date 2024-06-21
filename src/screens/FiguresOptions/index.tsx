@@ -36,6 +36,8 @@ export const FiguresOptions = ({
   const [pickedImage, setPickedImage] = useState<any>([]);
   const [imageComponents, setImageComponents] = useState<imageStickerProps[]>([]);
 
+  let optionsWidth: number = 118;
+
   const targetPixelCount = 1080; // If you want full HD pictures
   const pixelRatio = PixelRatio.get(); // The pixel ratio of the device
   // pixels * pixelRatio = targetPixelCount, so pixels = targetPixelCount / pixelRatio
@@ -47,44 +49,31 @@ export const FiguresOptions = ({
   const [rightImages, setRightImages] = useContext(RightImagesContext);
 
   const onAddSticker = () => {
+    console.log(pickedImage.length)
     setIsModalVisible(true);
   };
 
   const addSticker = (item: any) => {
     let imageAux: any [] = pickedImage;
     let imageExist: boolean = false;
-    imageAux.push(item);
 
-    setPickedImage(imageAux);
-    setImageComponents([...imageComponents, {id: imageComponents.length + 1}]);
-
-    /*imageAux.forEach(image => {
-      if(image == item){
-        imageExist = true;
-      }
-
-    });
-
-    if(!imageExist){
+    if(pickedImage.length == 0){
+      imageAux.push(item);
       setPickedImage(imageAux);
       setImageComponents([...imageComponents, {id: imageComponents.length + 1}]);
-    }*/
-    /*if(pickedImage.length == 0){
-      setPickedImage(imageAux);
-      setImageComponents([...imageComponents, {id: imageComponents.length + 1}]);
-    } else if(pickedImage.length > 0){
+    } else{
       for(let i = 0; i < pickedImage.length; i++){
-        if(pickedImage[i] == item){
+        if(item == pickedImage[i]){
           imageExist = true;
         }
       }
 
       if(!imageExist){
+        imageAux.push(item);
         setPickedImage(imageAux);
         setImageComponents([...imageComponents, {id: imageComponents.length + 1}]);
       }
-    }*/
-    
+    }
   };
 
   const onModalClose = () => {
@@ -104,13 +93,6 @@ export const FiguresOptions = ({
     const html = await PrintPDF.setHTML(result,rightImages);
     PrintPDF.printToFile(html);
   };
-  
-  /*const [points, setPoints] = useState(0);
-
-  const addPoints = () => {
-    let i: number = points + 1;
-    setPoints(i);
-  };*/
 
   return (
     <View
@@ -132,7 +114,7 @@ export const FiguresOptions = ({
         gap={6}
         p={3}
       >
-        <View flexDirection="column" alignItems="center">
+        <View flexDirection="column" alignItems="center" w={optionsWidth}>
           <Pressable
             onPress={() => {
               setSelectedImage("Cenarios");
@@ -144,17 +126,14 @@ export const FiguresOptions = ({
             <Image
               size="md"
               alt="Image1"
-              source={{
-                uri: "http://placekitten.com/300/300",
-              }}
+              source={require("../../assets/Images/Figuras/imagemLocais.png")}
             />
             <Text fontSize={"$lg"} fontWeight={"$bold"}>
               Cenários
             </Text>
           </Pressable>
         </View>
-
-        <View flexDirection="column" alignItems="center">
+        <View flexDirection="column" alignItems="center" w={optionsWidth}>
           <Pressable
             onPress={() => {
               setSelectedImage("Personagens");
@@ -166,16 +145,14 @@ export const FiguresOptions = ({
             <Image
               size="md"
               alt="Image1"
-              source={{
-                uri: "http://placekitten.com/300/300",
-              }}
+              source={require("../../assets/Images/Figuras/imagemPersonagens.png")}
             />
             <Text fontSize={"$lg"} fontWeight={"$bold"}>
               Personagens
             </Text>
           </Pressable>
         </View>
-        <View flexDirection="column" alignItems="center">
+        <View flexDirection="column" alignItems="center" w={optionsWidth}>
           <Pressable
             onPress={() => {
               setSelectedImage("Animais");
@@ -187,16 +164,14 @@ export const FiguresOptions = ({
             <Image
               size="md"
               alt="Image1"
-              source={{
-                uri: "http://placekitten.com/300/300",
-              }}
+              source={require("../../assets/Images/Figuras/imagemAnimais.png")}
             />
             <Text fontSize={"$lg"} fontWeight={"$bold"}>
               Animais
             </Text>
           </Pressable>
         </View>
-        <View flexDirection="column" alignItems="center">
+        <View flexDirection="column" alignItems="center" w={optionsWidth}>
           <Pressable
             onPress={() => {
               setSelectedImage("Objetos");
@@ -208,16 +183,14 @@ export const FiguresOptions = ({
             <Image
               size="md"
               alt="Image1"
-              source={{
-                uri: "http://placekitten.com/300/300",
-              }}
+              source={require("../../assets/Images/Figuras/imagemObjetos.png")}
             />
             <Text fontSize={"$lg"} fontWeight={"$bold"}>
               Objetos
             </Text>
           </Pressable>
         </View>
-        <View flexDirection="column" alignItems="center">
+        <View flexDirection="column" alignItems="center" w={optionsWidth}>
           <Pressable
             onPress={() => {
               setSelectedImage("Brinquedos");
@@ -229,9 +202,7 @@ export const FiguresOptions = ({
             <Image
               size="md"
               alt="Image1"
-              source={{
-                uri: "http://placekitten.com/300/300",
-              }}
+              source={require("../../assets/Images/Figuras/imagemBrinquedos.png")}
             />
             <Text fontSize={"$lg"} fontWeight={"$bold"}>
               Brinquedos

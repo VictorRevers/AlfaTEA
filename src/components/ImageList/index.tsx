@@ -22,7 +22,6 @@ export default function ImageList(props: imageListProps) {
       renderItem={({ item, index }) => (
         <Pressable
           onPress={() => {
-            console.log(item);
             props.onSelect(item);
             props.onCloseModal();
           }}>
