@@ -36,8 +36,6 @@ export default function ImageSticker(props: imageStickerProps) {
                 translateX.value += event.changeX;
               }
           }
-          console.log("Translate X: ", translateX.value);
-          console.log("Translate Y: ", translateY.value);
         });
 
     const imageStyle = useAnimatedStyle(() => {
