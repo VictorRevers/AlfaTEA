@@ -37,7 +37,9 @@ export default class ImagesBase{
 
         Personagens: [["AVÓ",require('./Figuras/personagens/avó.png')],["AVÔ",require('./Figuras/personagens/avô.png')],["MÃE",require('./Figuras/personagens/mãe.png')],["MENINA",require('./Figuras/personagens/menina.png')], 
         ["MENINO",require('./Figuras/personagens/menino.png')],["PAI",require('./Figuras/personagens/pai.png')],["TIA",require('./Figuras/personagens/tia.png')],["TIO",require('./Figuras/personagens/tio.png')] 
-        ]
+        ],
+
+        Hud: [require('./HUD/background_v2.png'), require('./HUD/creditos.png'), require('./HUD/jogar.png'), require('./HUD/logo_alfa_tea_v4.png'), require('./HUD/sobre_o_jogo.png'), require('./HUD/tutorial.png')],
          
     }
 }
