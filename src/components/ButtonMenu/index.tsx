@@ -15,18 +15,16 @@ export function ButtonMenu(props: buttonProps){
   if(props.type == "play"){
     return(
       <View style={styles.btnContainer}>
-        <Image
-          borderColor="black"
-          borderWidth="$2"
-          mt="$4"
-          size="xl"
-          alt="Image1"
-          source={
-            imagesList[2]
-          }
-        />
-        <Pressable style={styles.btn} p="$5" bg="red" onPress={props.onPress}>
-          <Text color="white">Jogar</Text>
+        <Pressable onPress={props.onPress}>
+          <Image
+            mt="$4"
+            size="2xl"
+            alt="Image1"
+            
+            source={
+              imagesList[2]
+            }
+          />
         </Pressable>
       </View>
     )
