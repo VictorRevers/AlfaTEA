@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { ButtonMenu } from "../../components/ButtonPlay";
+import { ButtonMenu } from "../../components/ButtonMenu";
 import { NavigationProp } from "@react-navigation/native";
 import { View } from "@gluestack-ui/themed";
 

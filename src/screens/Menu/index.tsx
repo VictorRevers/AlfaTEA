@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { ButtonMenu } from "../../components/ButtonPlay";
+import { ButtonMenu } from "../../components/ButtonMenu";
 import { NavigationProp } from "@react-navigation/native";
 
 export function Menu({ navigation }: { navigation: NavigationProp<any> }) {

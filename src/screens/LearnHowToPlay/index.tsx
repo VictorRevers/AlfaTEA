@@ -3,7 +3,7 @@ import { Text } from 'react-native';
 import { View } from "@gluestack-ui/themed";
 import YoutubePlayer from "react-native-youtube-iframe";
 import WebView from "react-native-webview";
-import { ButtonMenu } from "../../components/ButtonPlay";
+import { ButtonMenu } from "../../components/ButtonMenu";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 

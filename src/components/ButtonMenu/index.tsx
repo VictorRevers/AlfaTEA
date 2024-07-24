@@ -1,6 +1,7 @@
 //import { Button } from 'gluestack-ui';
-import {View, Pressable, Text} from "@gluestack-ui/themed";
+import {View, Pressable, Image, Text} from "@gluestack-ui/themed";
 import { StyleSheet } from "react-native";
+import ImagesController from "../../controllers/ImagesController";
 
 type buttonProps = {
   type: string;
@@ -9,9 +10,21 @@ type buttonProps = {
 }
 
 export function ButtonMenu(props: buttonProps){
+  const imagesList: any = ImagesController.GetImages("Hud");
+
   if(props.type == "play"){
     return(
       <View style={styles.btnContainer}>
+        <Image
+          borderColor="black"
+          borderWidth="$2"
+          mt="$4"
+          size="xl"
+          alt="Image1"
+          source={
+            imagesList[2]
+          }
+        />
         <Pressable style={styles.btn} p="$5" bg="red" onPress={props.onPress}>
           <Text color="white">Jogar</Text>
         </Pressable>

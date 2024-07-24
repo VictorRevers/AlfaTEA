@@ -21,6 +21,9 @@ export default class ImagesController{
         else if(type == "Personagens"){
             imagesList = ImagesBase.Base.Personagens;
         }
+        else if(type == "Hud"){
+            imagesList = ImagesBase.Base.Hud;
+        }
        
         return imagesList;
     }  

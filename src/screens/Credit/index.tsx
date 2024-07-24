@@ -1,5 +1,5 @@
 import { ScrollView, Text, View } from "@gluestack-ui/themed";
-import { ButtonMenu } from "../../components/ButtonPlay";
+import { ButtonMenu } from "../../components/ButtonMenu";
 import { NavigationProp } from "@react-navigation/native";
 import { Image } from "react-native-svg";
 import { StyleSheet } from "react-native";
