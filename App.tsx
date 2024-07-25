@@ -1,11 +1,12 @@
 import { config } from "@gluestack-ui/config";
-import { GluestackUIProvider } from "@gluestack-ui/themed";
+import { GluestackUIProvider, ImageBackground } from "@gluestack-ui/themed";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Routes } from "./src/routes/routes";
 import { StatusBar } from "expo-status-bar";
 import { createContext, useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import ImagesController from "./src/controllers/ImagesController";
 
 const Stack = createNativeStackNavigator();
 export const Context = createContext<any>("");

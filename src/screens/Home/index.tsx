@@ -1,53 +1,68 @@
 import { StyleSheet } from "react-native";
 import { ButtonMenu } from "../../components/ButtonMenu";
 import { NavigationProp } from "@react-navigation/native";
-import { View } from "@gluestack-ui/themed";
+import { View, ImageBackground } from "@gluestack-ui/themed";
+import ImagesController from "../../controllers/ImagesController";
 
 export const Home = ({ navigation }: { navigation: NavigationProp<any> }) => {
+
+  const imagesList = ImagesController.GetImages("Hud");
+
   return (
     <View style={styles.container}>
-      <View style={styles.btnAprenda}>
-        <ButtonMenu type="aprenda" onPress={() => {
-          navigation.navigate("LearnHowToPlay");
-        }} />
-      </View>
-      <View style={styles.btnPlay}>
-        <ButtonMenu
-          type="play"
-          onPress={() => {
-            navigation.navigate("FiguresOptions");
-          }}
-        />
-      </View>
-      <View style={styles.btnSobre}>
-        <ButtonMenu
-          type="sobre"
-          onPress={() => {
-            navigation.navigate("Sobre");
-          }}
-        />
-      </View>
-      <View style={styles.btnCredit}>
-        <ButtonMenu
-          type="credit"
-          onPress={() => {
-            navigation.navigate("Credit");
-          }}
-        />
-      </View>
+      <ImageBackground style={styles.backgroundImage} source={imagesList[0]}>
+        <View style={styles.btnAprenda}>
+          <ButtonMenu type="aprenda" onPress={() => {
+            navigation.navigate("LearnHowToPlay");
+          }} />
+        </View>
+        <View style={styles.btnPlay}>
+          <ButtonMenu
+            type="play"
+            onPress={() => {
+              navigation.navigate("FiguresOptions");
+            }}
+          />
+        </View>
+        <View style={styles.btnSobre}>
+          <ButtonMenu
+            type="sobre"
+            onPress={() => {
+              navigation.navigate("Sobre");
+            }}
+          />
+        </View>
+        <View style={styles.btnCredit}>
+          <ButtonMenu
+            type="credit"
+            onPress={() => {
+              navigation.navigate("Credit");
+            }}
+          />
+        </View>
+      </ImageBackground>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    height: 384,
+    height: "100%",
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 80,
-    gap: 80,
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover', // ou 'contain', 'stretch', etc.
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 40,
+    width: '100%',
+    height: '100%',
   },
   btnAprenda: {
     transform: [{ rotate: "-10deg" }],

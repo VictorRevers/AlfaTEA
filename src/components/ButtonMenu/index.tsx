@@ -15,12 +15,11 @@ export function ButtonMenu(props: buttonProps){
   if(props.type == "play"){
     return(
       <View style={styles.btnContainer}>
-        <Pressable onPress={props.onPress}>
+        <Pressable style={styles.btn} onPress={props.onPress}>
           <Image
-            mt="$4"
-            size="2xl"
+            size="xl"
             alt="Image1"
-            
+            style={styles.imageBtn}
             source={
               imagesList[2]
             }
@@ -31,24 +30,45 @@ export function ButtonMenu(props: buttonProps){
   }else if(props.type == "credit"){
     return(
       <View style={styles.btnContainer}>
-        <Pressable style={styles.btn} p="$5" bg="blue" onPress={props.onPress}>
-          <Text color="white">Credito</Text>
+        <Pressable style={styles.btn} onPress={props.onPress}>
+          <Image
+            size="xl"
+            alt="Image1"
+            style={styles.imageBtn}
+            source={
+              imagesList[1]
+            }
+          />
         </Pressable>
       </View>
     )
   } else if(props.type == "aprenda"){
     return(
       <View style={styles.btnContainer}>
-        <Pressable style={styles.btn} p="$5" bg="green" onPress={props.onPress}>
-          <Text color="white">Aprenda</Text>
+        <Pressable style={styles.btn} onPress={props.onPress}>
+          <Image
+            size="xl"
+            alt="Image1"
+            style={styles.imageBtn}
+            source={
+              imagesList[5]
+            }
+          />
         </Pressable>
       </View>
     )
   } else if(props.type == "sobre"){
     return(
       <View style={styles.btnContainer}>
-        <Pressable style={styles.btn} p="$5" bg="purple" onPress={props.onPress}>
-          <Text color="white">Sobre</Text>
+        <Pressable style={styles.btn} onPress={props.onPress}>
+          <Image
+            size="xl"
+            alt="Image1"
+            style={styles.imageBtn}
+            source={
+              imagesList[4]
+            }
+          />
         </Pressable>
       </View>
     )
@@ -68,10 +88,15 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    height: 160,
+  },
+  imageBtn: {
+    width: "100%",
+    height: "100%",
   },
   btn: {
-    width: 110,
-    height: 110,
+    width: 146,
+    height: "100%",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

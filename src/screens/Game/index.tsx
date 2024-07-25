@@ -9,6 +9,7 @@ import {
   Image,
   Input,
   InputField,
+  ImageBackground,
 } from "@gluestack-ui/themed";
 import { useContext, useState, useEffect } from "react";
 import { AntDesign } from "@expo/vector-icons";
@@ -27,6 +28,7 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
   const [isCorrect, setIsCorrect] = useState(false);
 
   const imagesList = ImagesController.GetImages(selectedImage);
+  const hudImages = ImagesController.GetImages("Hud");
   const [i, setI] = useState(0);
   const [openM, setOpenM] = useState(false);
 
@@ -101,492 +103,494 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
   });*/
 
   return (
-    <View
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      h="100%"
-      w="100%"
-      flexDirection="column"
-    >
-      <View
-        borderColor="black"
-        borderWidth="$1"
-        w="95%"
-        h="85%"
+    <View>
+      <ImageBackground
         display="flex"
         alignItems="center"
-        flexDirection="row"
-      >
-        <View w="40%" h="100%">
-          <View
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            flexDirection="row"
-          >
+        justifyContent="center"
+        h="100%"
+        w="100%"
+        flexDirection="column"
+        source={hudImages[0]}>
+        <View
+          borderColor="black"
+          borderWidth="$1"
+          w="95%"
+          h="85%"
+          display="flex"
+          alignItems="center"
+          flexDirection="row"
+        >
+          <View w="40%" h="100%">
             <View
               display="flex"
               alignItems="center"
               justifyContent="center"
-              w="55%"
+              flexDirection="row"
             >
-              <Image
+              <View
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                w="55%"
+              >
+                <Image
+                  borderColor="black"
+                  borderWidth="$2"
+                  mt="$4"
+                  size="xl"
+                  alt="Image1"
+                  source={
+                    /*{
+                    uri: "http://placekitten.com/300/300",
+                  }*/ imagesList[i][1]
+                  }
+                />
+              </View>
+              <View display="flex" alignItems="center" justifyContent="center">
+                <Box borderColor="black" borderWidth="$2">
+                  <AntDesign
+                    name="sound"
+                    size={40}
+                    color="black"
+                    onPress={() => {
+                      speakRightWord();
+                    }}
+                  />
+                </Box>
+              </View>
+            </View>
+            <View
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              flexDirection="row"
+              gap="$4"
+              mt="$2"
+            >
+              <Input
+                variant="outline"
+                size="md"
+                w="$40"
+                isReadOnly={true}
                 borderColor="black"
                 borderWidth="$2"
-                mt="$4"
-                size="xl"
-                alt="Image1"
-                source={
-                  /*{
-                  uri: "http://placekitten.com/300/300",
-                }*/ imagesList[i][1]
-                }
-              />
-            </View>
-            <View display="flex" alignItems="center" justifyContent="center">
+              >
+                <InputField
+                  placeholder=""
+                  value={word}
+                  fontWeight="$bold"
+                  fontSize="$xl"
+                />
+              </Input>
               <Box borderColor="black" borderWidth="$2">
                 <AntDesign
                   name="sound"
                   size={40}
                   color="black"
                   onPress={() => {
-                    speakRightWord();
+                    Tts();
                   }}
                 />
               </Box>
             </View>
-          </View>
-          <View
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            flexDirection="row"
-            gap="$4"
-            mt="$2"
-          >
-            <Input
-              variant="outline"
-              size="md"
-              w="$40"
-              isReadOnly={true}
-              borderColor="black"
-              borderWidth="$2"
+            <View
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              flexDirection="row"
+              gap={"$1"}
+              pr={"$12"}
             >
-              <InputField
-                placeholder=""
-                value={word}
-                fontWeight="$bold"
-                fontSize="$xl"
-              />
-            </Input>
-            <Box borderColor="black" borderWidth="$2">
-              <AntDesign
-                name="sound"
+              <MaterialCommunityIcons
+                name="reload"
                 size={40}
-                color="black"
+                color="blue"
                 onPress={() => {
-                  Tts();
+                  ClearWord();
+                  changeImage();
                 }}
               />
-            </Box>
+              <MaterialIcons
+                name="clear"
+                size={48}
+                color="red"
+                onPress={() => {
+                  ClearWord();
+                }}
+              />
+              <MaterialIcons
+                name="check"
+                size={48}
+                color="green"
+                onPress={() => {
+                  setOpenM(true);
+                  verifyAnswer(word);
+                }}
+              />
+            </View>
           </View>
           <View
+            w="55%"
+            h="80%"
             display="flex"
-            alignItems="center"
-            justifyContent="center"
-            flexDirection="row"
-            gap={"$1"}
-            pr={"$12"}
+            flexDirection="column"
+            borderColor="black"
+            borderWidth="$2"
+            pt="$1"
+            mb="$8"
           >
-            <MaterialCommunityIcons
-              name="reload"
-              size={40}
-              color="blue"
-              onPress={() => {
-                ClearWord();
-                changeImage();
-              }}
-            />
-            <MaterialIcons
-              name="clear"
-              size={48}
-              color="red"
-              onPress={() => {
-                ClearWord();
-              }}
-            />
-            <MaterialIcons
-              name="check"
-              size={48}
-              color="green"
-              onPress={() => {
-                setOpenM(true);
-                verifyAnswer(word);
-              }}
-            />
+            <View
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              flexDirection="row"
+              gap="$7"
+            >
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("a")}
+                >
+                  A
+                </Text>
+              </Box>
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("b")}
+                >
+                  B
+                </Text>
+              </Box>
+              <Box w="$7">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("c")}
+                >
+                  C
+                </Text>
+              </Box>
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("d")}
+                >
+                  D
+                </Text>
+              </Box>
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("e")}
+                >
+                  E
+                </Text>
+              </Box>
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("f")}
+                >
+                  F
+                </Text>
+              </Box>
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("g")}
+                >
+                  G
+                </Text>
+              </Box>
+            </View>
+            <View
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              flexDirection="row"
+              gap="$7"
+            >
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("h")}
+                >
+                  H
+                </Text>
+              </Box>
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("i")}
+                >
+                  {" "}
+                  I
+                </Text>
+              </Box>
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("j")}
+                >
+                  J
+                </Text>
+              </Box>
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("k")}
+                >
+                  K
+                </Text>
+              </Box>
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("l")}
+                >
+                  L
+                </Text>
+              </Box>
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("m")}
+                >
+                  M
+                </Text>
+              </Box>
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("n")}
+                >
+                  N
+                </Text>
+              </Box>
+            </View>
+            <View
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              flexDirection="row"
+              gap="$7"
+            >
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("o")}
+                >
+                  O
+                </Text>
+              </Box>
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("p")}
+                >
+                  P
+                </Text>
+              </Box>
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("q")}
+                >
+                  Q
+                </Text>
+              </Box>
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("r")}
+                >
+                  R
+                </Text>
+              </Box>
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("s")}
+                >
+                  S
+                </Text>
+              </Box>
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("t")}
+                >
+                  T
+                </Text>
+              </Box>
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("u")}
+                >
+                  U
+                </Text>
+              </Box>
+            </View>
+            <View
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              flexDirection="row"
+              gap="$7"
+            >
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("v")}
+                >
+                  V
+                </Text>
+              </Box>
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("w")}
+                >
+                  W
+                </Text>
+              </Box>
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("x")}
+                >
+                  X
+                </Text>
+              </Box>
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("y")}
+                >
+                  Y
+                </Text>
+              </Box>
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("z")}
+                >
+                  Z
+                </Text>
+              </Box>
+            </View>
+            <View
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              flexDirection="row"
+              gap="$7"
+            >
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("á")}
+                >
+                  Á
+                </Text>
+              </Box>
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("ã")}
+                >
+                  Ã
+                </Text>
+              </Box>
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("é")}
+                >
+                  É
+                </Text>
+              </Box>
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("ó")}
+                >
+                  Ó
+                </Text>
+              </Box>
+              <Box w="$8">
+                <Text
+                  fontSize="$4xl"
+                  fontWeight="$bold"
+                  onPress={() => handleButtonClick("ô")}
+                >
+                  Ô
+                </Text>
+              </Box>
+            </View>
           </View>
         </View>
-        <View
-          w="55%"
-          h="80%"
-          display="flex"
-          flexDirection="column"
-          borderColor="black"
-          borderWidth="$2"
-          pt="$1"
-          mb="$8"
+
+        <Button
+          mt="$1"
+          alignSelf="flex-start"
+          ml={"$5"}
+          onPress={() => {
+            navigation.navigate("FiguresOptions");
+          }}
         >
-          <View
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            flexDirection="row"
-            gap="$7"
-          >
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("a")}
-              >
-                A
-              </Text>
-            </Box>
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("b")}
-              >
-                B
-              </Text>
-            </Box>
-            <Box w="$7">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("c")}
-              >
-                C
-              </Text>
-            </Box>
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("d")}
-              >
-                D
-              </Text>
-            </Box>
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("e")}
-              >
-                E
-              </Text>
-            </Box>
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("f")}
-              >
-                F
-              </Text>
-            </Box>
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("g")}
-              >
-                G
-              </Text>
-            </Box>
-          </View>
-          <View
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            flexDirection="row"
-            gap="$7"
-          >
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("h")}
-              >
-                H
-              </Text>
-            </Box>
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("i")}
-              >
-                {" "}
-                I
-              </Text>
-            </Box>
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("j")}
-              >
-                J
-              </Text>
-            </Box>
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("k")}
-              >
-                K
-              </Text>
-            </Box>
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("l")}
-              >
-                L
-              </Text>
-            </Box>
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("m")}
-              >
-                M
-              </Text>
-            </Box>
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("n")}
-              >
-                N
-              </Text>
-            </Box>
-          </View>
-          <View
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            flexDirection="row"
-            gap="$7"
-          >
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("o")}
-              >
-                O
-              </Text>
-            </Box>
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("p")}
-              >
-                P
-              </Text>
-            </Box>
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("q")}
-              >
-                Q
-              </Text>
-            </Box>
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("r")}
-              >
-                R
-              </Text>
-            </Box>
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("s")}
-              >
-                S
-              </Text>
-            </Box>
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("t")}
-              >
-                T
-              </Text>
-            </Box>
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("u")}
-              >
-                U
-              </Text>
-            </Box>
-          </View>
-          <View
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            flexDirection="row"
-            gap="$7"
-          >
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("v")}
-              >
-                V
-              </Text>
-            </Box>
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("w")}
-              >
-                W
-              </Text>
-            </Box>
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("x")}
-              >
-                X
-              </Text>
-            </Box>
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("y")}
-              >
-                Y
-              </Text>
-            </Box>
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("z")}
-              >
-                Z
-              </Text>
-            </Box>
-          </View>
-          <View
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            flexDirection="row"
-            gap="$7"
-          >
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("á")}
-              >
-                Á
-              </Text>
-            </Box>
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("ã")}
-              >
-                Ã
-              </Text>
-            </Box>
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("é")}
-              >
-                É
-              </Text>
-            </Box>
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("ó")}
-              >
-                Ó
-              </Text>
-            </Box>
-            <Box w="$8">
-              <Text
-                fontSize="$4xl"
-                fontWeight="$bold"
-                onPress={() => handleButtonClick("ô")}
-              >
-                Ô
-              </Text>
-            </Box>
-          </View>
-        </View>
-      </View>
+          <Text>
+            <Text color="white">{selectedImage}</Text>
+          </Text>
+        </Button>
 
-      <Button
-        mt="$1"
-        alignSelf="flex-start"
-        ml={"$5"}
-        onPress={() => {
-          navigation.navigate("FiguresOptions");
-        }}
-      >
-        <Text>
-          <Text color="white">{selectedImage}</Text>
-        </Text>
-      </Button>
-
-      <ModalResult
-        isCorrect={isCorrect}
-        nextLevel={() => {
-          nextLevel();
-        }}
-        isOpen={openM}
-        word={word}
-        points={points}
-        image={imagesList[i][1]}
-        onPress={() => {
-          ClearWord();
-          changeImage();
-        }}
-      />
+        <ModalResult
+          isCorrect={isCorrect}
+          nextLevel={() => {
+            nextLevel();
+          }}
+          isOpen={openM}
+          word={word}
+          points={points}
+          image={imagesList[i][1]}
+          onPress={() => {
+            ClearWord();
+            changeImage();
+          }}
+        />
+      </ImageBackground>
     </View>
   );
 };
