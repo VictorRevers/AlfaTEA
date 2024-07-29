@@ -11,34 +11,36 @@ export const Home = ({ navigation }: { navigation: NavigationProp<any> }) => {
   return (
     <View style={styles.container}>
       <ImageBackground style={styles.backgroundImage} source={imagesList[0]}>
-        <View style={styles.btnAprenda}>
-          <ButtonMenu type="aprenda" onPress={() => {
-            navigation.navigate("LearnHowToPlay");
-          }} />
-        </View>
-        <View style={styles.btnPlay}>
-          <ButtonMenu
-            type="play"
-            onPress={() => {
-              navigation.navigate("FiguresOptions");
-            }}
-          />
-        </View>
-        <View style={styles.btnSobre}>
-          <ButtonMenu
-            type="sobre"
-            onPress={() => {
-              navigation.navigate("Sobre");
-            }}
-          />
-        </View>
-        <View style={styles.btnCredit}>
-          <ButtonMenu
-            type="credit"
-            onPress={() => {
-              navigation.navigate("Credit");
-            }}
-          />
+        <View style={styles.containerBtns}>
+          <View style={styles.btnAprenda}>
+            <ButtonMenu type="aprenda" onPress={() => {
+              navigation.navigate("LearnHowToPlay");
+            }} />
+          </View>
+          <View style={styles.btnPlay}>
+            <ButtonMenu
+              type="play"
+              onPress={() => {
+                navigation.navigate("FiguresOptions");
+              }}
+            />
+          </View>
+          <View style={styles.btnSobre}>
+            <ButtonMenu
+              type="sobre"
+              onPress={() => {
+                navigation.navigate("Sobre");
+              }}
+            />
+          </View>
+          <View style={styles.btnCredit}>
+            <ButtonMenu
+              type="credit"
+              onPress={() => {
+                navigation.navigate("Credit");
+              }}
+            />
+          </View>
         </View>
       </ImageBackground>
     </View>
@@ -53,14 +55,25 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  backgroundImage: {
+  containerBtns: {
     flex: 1,
-    resizeMode: 'cover', // ou 'contain', 'stretch', etc.
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    gap: 40,
+    gap: 20,
+    width: '100%',
+    height: '100%',
+    marginTop: 130
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover', // ou 'contain', 'stretch', etc.
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 20,
     width: '100%',
     height: '100%',
   },

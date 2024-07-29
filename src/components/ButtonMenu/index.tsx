@@ -1,5 +1,5 @@
 //import { Button } from 'gluestack-ui';
-import {View, Pressable, Image, Text} from "@gluestack-ui/themed";
+import {View, Pressable, Image, Text, ImageBackground} from "@gluestack-ui/themed";
 import { StyleSheet } from "react-native";
 import ImagesController from "../../controllers/ImagesController";
 
@@ -17,7 +17,6 @@ export function ButtonMenu(props: buttonProps){
       <View style={styles.btnContainer}>
         <Pressable style={styles.btn} onPress={props.onPress}>
           <Image
-            size="xl"
             alt="Image1"
             style={styles.imageBtn}
             source={
@@ -32,7 +31,6 @@ export function ButtonMenu(props: buttonProps){
       <View style={styles.btnContainer}>
         <Pressable style={styles.btn} onPress={props.onPress}>
           <Image
-            size="xl"
             alt="Image1"
             style={styles.imageBtn}
             source={
@@ -47,7 +45,6 @@ export function ButtonMenu(props: buttonProps){
       <View style={styles.btnContainer}>
         <Pressable style={styles.btn} onPress={props.onPress}>
           <Image
-            size="xl"
             alt="Image1"
             style={styles.imageBtn}
             source={
@@ -60,16 +57,15 @@ export function ButtonMenu(props: buttonProps){
   } else if(props.type == "sobre"){
     return(
       <View style={styles.btnContainer}>
-        <Pressable style={styles.btn} onPress={props.onPress}>
-          <Image
-            size="xl"
-            alt="Image1"
-            style={styles.imageBtn}
-            source={
-              imagesList[4]
-            }
-          />
-        </Pressable>
+          <Pressable style={styles.btn} onPress={props.onPress}>
+            <Image
+              alt="Image1"
+              style={styles.imageBtn}
+              source={
+                imagesList[4]
+              }
+            />
+          </Pressable>
       </View>
     )
   } else if(props.type == "voltar"){
@@ -88,14 +84,14 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    height: 160,
+    height: 190,
   },
   imageBtn: {
     width: "100%",
     height: "100%",
   },
   btn: {
-    width: 146,
+    width: 176,
     height: "100%",
     display: "flex",
     justifyContent: "center",

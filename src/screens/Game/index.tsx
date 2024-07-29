@@ -232,7 +232,7 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
           </View>
           <View
             w="55%"
-            h="80%"
+            h="86%"
             display="flex"
             flexDirection="column"
             borderColor="black"

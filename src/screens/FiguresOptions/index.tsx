@@ -278,7 +278,7 @@ export const FiguresOptions = ({
               </Text>
             </Pressable>
           </View>
-          <Button onPress={snapshot} bg="#f4f4f4">
+          <Button onPress={snapshot} bg="transparent">
             <MaterialCommunityIcons name="printer" size={32} color="black" />
           </Button>
         </View>
