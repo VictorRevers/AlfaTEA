@@ -10,7 +10,7 @@ export function Sobre({navigation}: {navigation: NavigationProp<any>}){
 
     return(
         <View style={styles.containerSobre}>
-            <ImageBackground style={styles.backgroundImage} source={imagesList[0]}>
+            <ImageBackground style={styles.backgroundImage} source={imagesList[6]}>
                 <View style={styles.containerImagem}>
                     <Image style={styles.imageLogo} source={imagesList[3]} />
                 </View>

@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { ButtonMenu } from "../../components/ButtonMenu";
 import { NavigationProp } from "@react-navigation/native";
-import { View, ImageBackground } from "@gluestack-ui/themed";
+import { View, ImageBackground, Image } from "@gluestack-ui/themed";
 import ImagesController from "../../controllers/ImagesController";
 
 export const Home = ({ navigation }: { navigation: NavigationProp<any> }) => {
@@ -10,7 +10,10 @@ export const Home = ({ navigation }: { navigation: NavigationProp<any> }) => {
 
   return (
     <View style={styles.container}>
-      <ImageBackground style={styles.backgroundImage} source={imagesList[0]}>
+      <ImageBackground style={styles.backgroundImage} source={imagesList[6]}>
+        <View style={styles.logoAlfaTea}>
+          <Image source={imagesList[3]} style={styles.logoImg} />
+        </View>
         <View style={styles.containerBtns}>
           <View style={styles.btnAprenda}>
             <ButtonMenu type="aprenda" onPress={() => {
@@ -55,6 +58,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  logoAlfaTea: {
+     width: "100%",
+     display: "flex",
+     justifyContent: "flex-end",
+     alignItems: "flex-end",
+
+  },
+  logoImg: {
+    width: 100,
+    height: 100,
+  },
   containerBtns: {
     flex: 1,
     display: "flex",
@@ -64,7 +78,7 @@ const styles = StyleSheet.create({
     gap: 20,
     width: '100%',
     height: '100%',
-    marginTop: 130
+    marginTop: 60
   },
   backgroundImage: {
     flex: 1,

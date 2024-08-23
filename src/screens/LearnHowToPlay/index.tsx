@@ -25,7 +25,7 @@ export const LearnHowToPlay = ({ navigation }: { navigation: NavigationProp<any>
                 flexDirection="row"
                 justifyContent="center"
                 alignItems="center"
-                source={imagesList[0]}
+                source={imagesList[6]}
             >
                 <View
                     w="50%"

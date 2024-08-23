@@ -14,7 +14,7 @@ export function ButtonMenu(props: buttonProps){
 
   if(props.type == "play"){
     return(
-      <View style={styles.btnContainer}>
+      <View style={styles.btnContainerPlay}>
         <Pressable style={styles.btn} onPress={props.onPress}>
           <Image
             alt="Image1"
@@ -28,7 +28,7 @@ export function ButtonMenu(props: buttonProps){
     )
   }else if(props.type == "credit"){
     return(
-      <View style={styles.btnContainer}>
+      <View style={styles.btnContainerCredit}>
         <Pressable style={styles.btn} onPress={props.onPress}>
           <Image
             alt="Image1"
@@ -42,7 +42,7 @@ export function ButtonMenu(props: buttonProps){
     )
   } else if(props.type == "aprenda"){
     return(
-      <View style={styles.btnContainer}>
+      <View style={styles.btnContainerAprenda}>
         <Pressable style={styles.btn} onPress={props.onPress}>
           <Image
             alt="Image1"
@@ -56,7 +56,7 @@ export function ButtonMenu(props: buttonProps){
     )
   } else if(props.type == "sobre"){
     return(
-      <View style={styles.btnContainer}>
+      <View style={styles.btnContainerSobre}>
           <Pressable style={styles.btn} onPress={props.onPress}>
             <Image
               alt="Image1"
@@ -84,10 +84,34 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    height: 170,
+  },
+  btnContainerPlay: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     height: 190,
   },
+  btnContainerCredit: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 170,
+  },
+  btnContainerAprenda: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 172,
+  },
+  btnContainerSobre: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 130,
+  },
   imageBtn: {
-    width: "100%",
+    width: "90%",
     height: "100%",
   },
   btn: {
