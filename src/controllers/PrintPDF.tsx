@@ -6,7 +6,7 @@ import { useRef } from 'react';
 
 export default class PrintPDF{
 
-    /*static async setHTML(image:any, words:string[]){
+    static async setHTML(image:any){
       
       const imagesList = ImagesController.GetImages("Hud");
       //const img = await FileSystem.uploadPic(image);
@@ -16,14 +16,9 @@ export default class PrintPDF{
           <head>
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
           </head>
-          <body style="text-align: center; background-image: url(${imagesList[6]});">
-            <h1 style="font-size: 50px; font-family: Helvetica Neue; font-weight: normal;">
-              Minhas Conquistas!
-            </h1>
-            <img
-              src=${image}
-              style="width: 90vw;" />
-              <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+          <body style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 300px;">
+            <h1>Minhas Conquistas!</h1>
+            <img src=${image} style="width: 90%; height: 30%;" />
           </body>
           
         </html>
@@ -35,10 +30,16 @@ export default class PrintPDF{
     }
 
     static async printToFile(html:any){
+      try{
         const { uri } = await Print.printToFileAsync({ html });
+        
         console.log('File has been saved to:', uri);
         await shareAsync(uri, { UTI: '.pdf', mimeType: 'application/pdf' });
-    }*/
+      } catch(error){
+        console.log(error);
+      }
+        
+    }
 
     
 }
