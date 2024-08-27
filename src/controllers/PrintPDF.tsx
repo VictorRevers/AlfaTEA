@@ -16,9 +16,10 @@ export default class PrintPDF{
           <head>
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
           </head>
-          <body style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 300px;">
-            <h1>Minhas Conquistas!</h1>
-            <img src=${image} style="width: 90%; height: 30%;" />
+          <body>
+            <div style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 300px;">
+              <img src=${image} style="width: 90%; height: 30%;" />
+            </div>
           </body>
           
         </html>

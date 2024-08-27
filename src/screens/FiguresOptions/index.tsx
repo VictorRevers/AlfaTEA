@@ -109,10 +109,18 @@ export const FiguresOptions = ({
 
   return (
     <View
+      ref={viewToSnapShotRef}
       display="flex"
       alignItems="center"
       justifyContent="center"
       flexDirection="column"
+      borderColor="$black"
+      mt={6}
+      borderWidth={"$0"}
+      w={"100%"}
+      h={"100%"}
+      gap={0}
+      p={0}
     >
       <ImageBackground
         display="flex"
@@ -235,7 +243,6 @@ export const FiguresOptions = ({
         <SafeAreaView></SafeAreaView>
         
         <View
-          ref={viewToSnapShotRef}
           display="flex"
           alignItems="center"
           justifyContent="center"
