@@ -4,10 +4,8 @@
     "slug": "expo-app",
     "version": "1.0.0",
     "orientation": "landscape",
-    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -19,16 +17,23 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "screenOrientation": "portrait"
+      "screenOrientation": "portrait",
+      "package": "com.felihum.expoapp"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
     },
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "7f8f8769-8e0b-4bf7-ae58-81e261380fb0"
+      }
+    }
   }
 }
