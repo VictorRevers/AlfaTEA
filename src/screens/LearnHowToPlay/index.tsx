@@ -6,11 +6,13 @@ import WebView from "react-native-webview";
 import { ButtonMenu } from "../../components/ButtonMenu";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import ImagesController from "../../controllers/ImagesController";
+import Video from "react-native-video";
 
 
 export const LearnHowToPlay = ({ navigation }: { navigation: NavigationProp<any> }) =>{
 
     const imagesList = ImagesController.GetImages("Hud");
+    const video = ImagesController.GetImages("Video");
 
     return(
 
@@ -51,7 +53,12 @@ export const LearnHowToPlay = ({ navigation }: { navigation: NavigationProp<any>
                     flexDirection="column"
                     alignItems="flex-end"
                 >
-                    <YoutubePlayer height={350} width={500} videoId="TY88BtRtG3I" />
+                    <Video
+                        source={{ uri: video[0]}} // URL do vídeo ou caminho local
+                        controls={true} // Exibe controles de reprodução
+                        resizeMode="contain" // Ajusta o vídeo para caber na tela
+                    />
+
                 </View>
             
             </ImageBackground>

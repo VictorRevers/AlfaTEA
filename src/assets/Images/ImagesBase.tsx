@@ -40,6 +40,7 @@ export default class ImagesBase{
         ],
 
         Hud: [require('./HUD/bgAlfaTea.jpeg'), require('./HUD/creditos.png'), require('./HUD/jogar.png'), require('./HUD/logo_alfa_tea_v4.png'), require('./HUD/sobre_o_jogo.png'), require('./HUD/tutorial.png'), require('./HUD/bgAlfaTeaUnicarioca.jpeg')],
-         
+        
+        Video: [require('../tutorial-video.mp4')],
     }
 }
