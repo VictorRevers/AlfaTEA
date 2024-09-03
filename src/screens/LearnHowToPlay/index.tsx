@@ -1,18 +1,14 @@
 import { NavigationProp } from "@react-navigation/native";
-import { Text } from 'react-native';
 import { ImageBackground, View } from "@gluestack-ui/themed";
-import YoutubePlayer from "react-native-youtube-iframe";
-import WebView from "react-native-webview";
-import { ButtonMenu } from "../../components/ButtonMenu";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import ImagesController from "../../controllers/ImagesController";
-import Video from "react-native-video";
+import { Video, ResizeMode } from 'expo-av';
 
 
 export const LearnHowToPlay = ({ navigation }: { navigation: NavigationProp<any> }) =>{
 
     const imagesList = ImagesController.GetImages("Hud");
-    const video = ImagesController.GetImages("Video");
+    const video = require('../../assets/tutorial-video.mp4');
 
     return(
 
@@ -51,14 +47,15 @@ export const LearnHowToPlay = ({ navigation }: { navigation: NavigationProp<any>
                     height="100%"
                     display="flex"
                     flexDirection="column"
+                    justifyContent="center"
                     alignItems="flex-end"
                 >
                     <Video
-                        source={{ uri: video[0]}} // URL do vídeo ou caminho local
-                        controls={true} // Exibe controles de reprodução
-                        resizeMode="contain" // Ajusta o vídeo para caber na tela
+                        source={ video }
+                        resizeMode={ResizeMode.CONTAIN}
+                        style={{ width: 600, height: 300 }}
+                        useNativeControls
                     />
-
                 </View>
             
             </ImageBackground>

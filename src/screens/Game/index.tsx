@@ -11,7 +11,7 @@ import {
   InputField,
   ImageBackground,
 } from "@gluestack-ui/themed";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";

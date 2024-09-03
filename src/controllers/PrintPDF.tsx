@@ -2,7 +2,6 @@
 import * as Print from 'expo-print';
 import { shareAsync } from 'expo-sharing';
 import ImagesController from './ImagesController';
-import { useRef } from 'react';
 
 export default class PrintPDF{
 

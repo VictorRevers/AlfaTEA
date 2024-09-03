@@ -2,7 +2,6 @@ import {
   View,
   Text,
   Image,
-  Link,
   Pressable,
   Button,
   ImageBackground,
@@ -10,26 +9,18 @@ import {
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { NavigationProp } from "@react-navigation/native";
-import ViewShot, { captureRef } from "react-native-view-shot";
-import { Alert, PermissionsAndroid, PixelRatio, Platform } from "react-native";
+import { captureRef } from "react-native-view-shot";
+import { PixelRatio } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import PrintPDF from "../../controllers/PrintPDF";
-import * as FileSystem from 'expo-file-system';
-import * as Print from 'expo-print';
 
 import { Context, PointsContext, RightImagesContext } from "../../../App";
-import { useContext, useState, useEffect, useRef } from "react";
+import { useContext, useState, useRef } from "react";
 import ModalImage from "../../components/ModalImage";
 import { StatusBar } from "expo-status-bar";
 import ImageList from "../../components/ImageList";
 import ImageSticker from "../../components/ImageSticker";
 import ImagesController from "../../controllers/ImagesController";
-import { captureScreen } from 'react-native-view-shot';
-import { shareAsync } from "expo-sharing";
-import { printAsync, printToFileAsync } from "expo-print";
-import { PDFDocument, PDFPage } from 'react-native-pdf-lib';
-import share from 'react-native-share';
-import RNFetchBlob from 'rn-fetch-blob';
 
 interface imageStickerProps {
   id: number;
@@ -41,11 +32,9 @@ export const FiguresOptions = ({
   navigation: NavigationProp<any>;
 }) => {
   const viewToSnapShotRef: any = useRef<typeof View>();
-  const [snapshotImage, setSnapShotImage] = useState("");
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [pickedImage, setPickedImage] = useState<any>([]);
   const [imageComponents, setImageComponents] = useState<imageStickerProps[]>([]);
-  const [imgUri, setImgUri] = useState<string>("");
 
   let optionsWidth: number = 118;
 
@@ -59,7 +48,6 @@ export const FiguresOptions = ({
   const [points, setPoints] = useContext(PointsContext);
   const [rightImages, setRightImages] = useContext(RightImagesContext);
   const imagesList = ImagesController.GetImages("Hud");
-  const viewRef = useRef(null);
 
   const onAddSticker = () => {
     console.log(pickedImage.length)
