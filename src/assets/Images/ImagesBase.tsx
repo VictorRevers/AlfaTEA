@@ -35,7 +35,7 @@ export default class ImagesBase{
         ["TÊNIS",require('./Figuras/objetos/tênis.png')]
         ],
 
-        Personagens: [["AVÓ",require('./Figuras/personagens/avó.png')],["AVÔ",require('./Figuras/personagens/avô.png')],["MÃE",require('./Figuras/personagens/mãe.png')],["MENINA",require('./Figuras/personagens/menina.png')], 
+        Personagens: [["AVÓ",require('./Figuras/personagens/avo-mulher.png')],["AVÔ",require('./Figuras/personagens/avo-homem.png')],["MÃE",require('./Figuras/personagens/mãe.png')],["MENINA",require('./Figuras/personagens/menina.png')], 
         ["MENINO",require('./Figuras/personagens/menino.png')],["PAI",require('./Figuras/personagens/pai.png')],["TIA",require('./Figuras/personagens/tia.png')],["TIO",require('./Figuras/personagens/tio.png')] 
         ],
 
