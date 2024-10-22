@@ -97,7 +97,6 @@ export const FiguresOptions = ({
 
   return (
     <View
-      ref={viewToSnapShotRef}
       display="flex"
       alignItems="center"
       justifyContent="center"
@@ -129,7 +128,7 @@ export const FiguresOptions = ({
           borderWidth={"$1"}
           w={"90%"}
           h={"30%"}
-          gap={6}
+          gap={12}
           p={3}
         >
           <View flexDirection="column" alignItems="center" w={optionsWidth}>
@@ -231,6 +230,7 @@ export const FiguresOptions = ({
         <SafeAreaView></SafeAreaView>
         
         <View
+          ref={viewToSnapShotRef}
           display="flex"
           alignItems="center"
           justifyContent="center"
@@ -241,7 +241,7 @@ export const FiguresOptions = ({
           h={"55%"}
           p={2}
         >
-          {imageComponents.map(image => <ImageSticker id={image.id} key={image.id} imageSize={60} stickerSource={pickedImage[image.id - 1]} />)}
+          {imageComponents.map(image => <ImageSticker id={image.id} key={image.id} imageSize={85} stickerSource={pickedImage[image.id - 1]} />)}
         </View>
 
         <View
@@ -250,7 +250,7 @@ export const FiguresOptions = ({
           justifyContent="space-between"
           flexDirection="row"
           mt={2}
-          w={"100%"}
+          w={"92%"}
           h={"12%"}
         >
           <MaterialIcons

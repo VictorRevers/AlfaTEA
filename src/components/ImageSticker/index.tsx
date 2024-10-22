@@ -11,28 +11,31 @@ export default function ImageSticker(props: imageStickerProps) {
     const translateX = useSharedValue(0);
     const translateY = useSharedValue(0);
 
+    const marginY = 71;
+    const marginX = 306;
+
     const scaleImage = useSharedValue(props.imageSize);
 
     const drag = Gesture.Pan()
         .onChange((event) => {
-          if((translateY.value < 81 && translateY.value > -81) && (translateX.value < 316 && translateX.value > -316)){
+          if((translateY.value < marginY && translateY.value > -marginY) && (translateX.value < marginX && translateX.value > -marginX)){
             translateX.value += event.changeX;
             translateY.value += event.changeY;
-          } else if((translateY.value >= 81 || translateY.value <= -81) && translateX.value < 316 && translateX.value > -316){
+          } else if((translateY.value >= marginY || translateY.value <= -marginY) && translateX.value < marginX && translateX.value > -marginX){
               translateX.value += event.changeX;
-              if((event.changeY < 0 && translateY.value >= 81) || (event.changeY > 0 && translateY.value <= -81)){
+              if((event.changeY < 0 && translateY.value >= marginY) || (event.changeY > 0 && translateY.value <= -marginY)){
                 translateY.value += event.changeY;
               }
-          } else if((translateX.value >= 316 || translateX.value <= -316) && translateY.value < 81 && translateY.value > -81){
+          } else if((translateX.value >= marginX || translateX.value <= -marginX) && translateY.value < marginY && translateY.value > -marginY){
               translateY.value += event.changeY;
-              if((event.changeX < 0 && translateX.value >= 316) || (event.changeX > 0 && translateX.value <= -316)){
+              if((event.changeX < 0 && translateX.value >= marginX) || (event.changeX > 0 && translateX.value <= -marginX)){
                 translateX.value += event.changeX;
               }
-          } else if((translateX.value >= 316 || translateX.value <= -316) && translateY.value > 81 || translateY.value < -81){
-              if((event.changeY < 0 && translateY.value >= 81) || (event.changeY > 0 && translateY.value <= -81)){
+          } else if((translateX.value >= marginX || translateX.value <= -marginX) && translateY.value > marginY || translateY.value < -marginY){
+              if((event.changeY < 0 && translateY.value >= marginY) || (event.changeY > 0 && translateY.value <= -marginY)){
                 translateY.value += event.changeY;
               }
-              if((event.changeX < 0 && translateX.value >= 316) || (event.changeX > 0 && translateX.value <= -316)){
+              if((event.changeX < 0 && translateX.value >= marginX) || (event.changeX > 0 && translateX.value <= -marginX)){
                 translateX.value += event.changeX;
               }
           }

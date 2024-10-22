@@ -121,7 +121,7 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
           alignItems="center"
           flexDirection="row"
         >
-          <View w="40%" h="100%">
+          <View w="40%" h="100%" display="flex" justifyContent="center" alignItems="center" gap={10}>
             <View
               display="flex"
               alignItems="center"
@@ -134,18 +134,24 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
                 justifyContent="center"
                 w="55%"
               >
-                <Image
+                <View
                   borderColor="black"
-                  borderWidth="$2"
+                  borderWidth="$1"
                   mt="$4"
-                  size="xl"
-                  alt="Image1"
-                  source={
-                    /*{
-                    uri: "http://placekitten.com/300/300",
-                  }*/ imagesList[i][1]
-                  }
-                />
+                  backgroundColor="white"
+                >
+                  <Image
+                    size="xl"
+                    padding={70}
+                    alt="Image1"
+                    source={
+                      /*{
+                      uri: "http://placekitten.com/300/300",
+                    }*/ imagesList[i][1]
+                    }
+                  />
+                </View>
+                
               </View>
               <View display="flex" alignItems="center" justifyContent="center">
                 <Box borderColor="black" borderWidth="$2">
@@ -178,7 +184,7 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
               >
                 <InputField
                   placeholder=""
-                  value={word}
+                  value={word.toUpperCase()}
                   fontWeight="$bold"
                   fontSize="$xl"
                 />
@@ -194,6 +200,7 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
                 />
               </Box>
             </View>
+            
             <View
               display="flex"
               alignItems="center"
@@ -563,18 +570,21 @@ export const Game = ({ navigation }: { navigation: NavigationProp<any> }) => {
           </View>
         </View>
 
-        <Button
-          mt="$1"
+        <View
           alignSelf="flex-start"
-          ml={"$5"}
-          onPress={() => {
-            navigation.navigate("FiguresOptions");
-          }}
+          marginLeft={15}
         >
-          <Text>
-            <Text color="white">{selectedImage}</Text>
-          </Text>
-        </Button>
+          <MaterialIcons
+              name="arrow-back"
+              size={32}
+              color="black"
+              ml={"$5"}
+              onPress={() => {
+                navigation.navigate("FiguresOptions");
+              }}
+            />
+        </View>
+        
 
         <ModalResult
           isCorrect={isCorrect}

@@ -12,7 +12,7 @@ export default function ModalImage(props: modalProps) {
     <Modal animationType="slide" transparent={true} visible={props.isVisible}>
       <View style={styles.modalContent}>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>Choose a sticker</Text>
+          <Text style={styles.title}>Selecione uma imagem</Text>
           <Pressable onPress={props.onClose}>
             <MaterialIcons name="close" color="#fff" size={22} />
           </Pressable>
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     modalContent: {
       height: '45%',
       width: '100%',
-      backgroundColor: '#25292e',
+      backgroundColor: '#ffe7fa',
       borderTopRightRadius: 18,
       borderTopLeftRadius: 18,
       position: 'absolute',
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     },
     titleContainer: {
       height: '16%',
-      backgroundColor: '#464C55',
+      backgroundColor: '#ffc1f2',
       borderTopRightRadius: 10,
       borderTopLeftRadius: 10,
       paddingHorizontal: 20,
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
       justifyContent: 'space-between',
     },
     title: {
-      color: '#fff',
+      color: '#000000',
       fontSize: 16,
     },
   });
