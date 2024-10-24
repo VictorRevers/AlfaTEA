@@ -108,11 +108,11 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    height: 130,
+    height: 134,
   },
   imageBtn: {
-    width: "90%",
-    height: "100%",
+    width: "100%",
+    height: "110%",
   },
   btn: {
     width: 176,

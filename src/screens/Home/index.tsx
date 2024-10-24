@@ -15,12 +15,12 @@ export const Home = ({ navigation }: { navigation: NavigationProp<any> }) => {
           <Image source={imagesList[3]} style={styles.logoImg} />
         </View>
         <View style={styles.containerBtns}>
-          <View style={styles.btnAprenda}>
+          <View>
             <ButtonMenu type="aprenda" onPress={() => {
               navigation.navigate("LearnHowToPlay");
             }} />
           </View>
-          <View style={styles.btnPlay}>
+          <View>
             <ButtonMenu
               type="play"
               onPress={() => {
@@ -28,7 +28,7 @@ export const Home = ({ navigation }: { navigation: NavigationProp<any> }) => {
               }}
             />
           </View>
-          <View style={styles.btnSobre}>
+          <View>
             <ButtonMenu
               type="sobre"
               onPress={() => {
@@ -36,7 +36,7 @@ export const Home = ({ navigation }: { navigation: NavigationProp<any> }) => {
               }}
             />
           </View>
-          <View style={styles.btnCredit}>
+          <View>
             <ButtonMenu
               type="credit"
               onPress={() => {
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     gap: 20,
     width: '100%',
     height: '100%',
-    marginTop: 60
+    marginTop: 30
   },
   backgroundImage: {
     flex: 1,
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  btnAprenda: {
+  /*btnAprenda: {
     transform: [{ rotate: "-10deg" }],
   },
   btnPlay: {
@@ -102,5 +102,5 @@ const styles = StyleSheet.create({
   },
   btnCredit: {
     transform: [{ rotate: "-8deg" }],
-  },
+  },*/
 });

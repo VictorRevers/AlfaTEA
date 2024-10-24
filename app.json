@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "expo-app",
+    "name": "AlfaTea",
     "slug": "expo-app",
+    "icon": "./src/assets/Images/HUD/logoAlfaTeaIcon.png",
     "version": "1.0.0",
     "orientation": "landscape",
     "userInterfaceStyle": "light",
